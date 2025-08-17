@@ -1,0 +1,31 @@
+/*
+int pos = 0;
+Match check;
+check = Regex.Match(input.Substring(pos,input.Length-pos),@"(\([0-9]+x[0-9]+\))");
+while(check.Success & pos < input.Length)
+{
+    pos = input.IndexOf(check.Value);
+    // om success - gör en decompress. håll ordning på var sektionen slutar
+    // antar att det är pos + antal chars enligt marker + de två värdena i markern multiplicerat med varandra - längden på själva markern i sig
+    string marker = check.Value;
+    int markerLength = marker.Length;
+    int chars, repeat = 0;
+    (chars,repeat) = ParseMarker(marker);
+    string newChars = input.Substring(pos+markerLength,chars);
+    StringBuilder sb = new();
+    for(int n = 0; n< repeat; n++)
+    {
+        sb.Append(newChars);
+    }
+    string expanded = sb.ToString();
+
+    string replaced = $"{input.Substring(0,pos)}{expanded}{input.Substring(pos+markerLength+chars)}";
+    
+    input = replaced;
+    pos=pos+markerLength+chars;
+    check = Regex.Match(input.Substring(pos,input.Length-pos),@"(\([0-9]+x[0-9]+\))");
+}
+
+int count = input.ToCharArray().Select(c => !char.IsWhiteSpace(c)).ToArray().Length;
+Console.WriteLine($"Step 1: {count}");
+*/

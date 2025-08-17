@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntcodeComputer", "src\IntcodeComputer.csproj", "{508BE6A7-9BAD-427C-93DD-F543CB68A12B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntcodeComputerTests", "tests\IntcodeComputerTests.csproj", "{A8A85260-E959-476B-A1C3-27F94A31BA0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{508BE6A7-9BAD-427C-93DD-F543CB68A12B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{508BE6A7-9BAD-427C-93DD-F543CB68A12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{508BE6A7-9BAD-427C-93DD-F543CB68A12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{508BE6A7-9BAD-427C-93DD-F543CB68A12B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8A85260-E959-476B-A1C3-27F94A31BA0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A85260-E959-476B-A1C3-27F94A31BA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8A85260-E959-476B-A1C3-27F94A31BA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A85260-E959-476B-A1C3-27F94A31BA0C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00A5BF16-EF50-4F4E-9E80-FE8F69CD2951}
+	EndGlobalSection
+EndGlobal
