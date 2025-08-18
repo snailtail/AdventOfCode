@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 
 string path = "testinput.dat";
 var input = File.ReadAllLines(path);
@@ -14,6 +15,9 @@ for (int y = 0; y < input.Length; y++)
 
 Console.WriteLine($"Imported light grid... Length is at: {lights.GetLength(0)}");
 lights.PrintGrid();
+var n = lights.GetNeighbourCountByStatus(4, 1,true);
+var amount = n.Count;
+Console.WriteLine($"4,1 has {amount} neighbours w. status true");
 
 
 public class Light(int x, int y, bool status)
@@ -26,11 +30,34 @@ public class Light(int x, int y, bool status)
 
 public static class Methods
 {
-
-    public static List<Light> GetNeighbors(Light[] Grid, int X, int Y)
+    public static void Cycle(this Light[,] LightGrid)
     {
-        List<Light> neighbors = new List<Light>();
-        return neighbors;
+        // First let's cycle through all the lights, check their neigbors and set their NextStatus accordingly.
+        // When that is done we swap .Status for .NextStatus
+    }
+
+    public static List<Light> GetNeighbourCountByStatus(this Light[,] LightGrid, int X, int Y, bool status)
+    {
+        var neighbours = LightGrid.GetNeighbours(X, Y);
+        return neighbours.Where(n => n.Status == status).ToList();
+    }
+
+    public static List<Light> GetNeighbours(this Light[,] LightGrid, int X, int Y)
+    {
+        int length = LightGrid.GetLength(0);
+        List<Light> neighbours = new List<Light>();
+        (int, int)[] coord_offsets = [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1)];
+        foreach ((int xo, int yo) in coord_offsets)
+        {
+            int x = X + xo;
+            int y = Y + yo;
+            if (x < length && x >= 0 && y < length && y >= 0)
+            {
+                neighbours.Add(LightGrid[y, x]);
+            }
+        }
+
+        return neighbours;
     }
     public static void PrintGrid(this Light[,] LightGrid)
     {
