@@ -1,0 +1,1 @@
+public record GalaxyCoordinate(int Y,int X);
