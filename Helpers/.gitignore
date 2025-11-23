@@ -15,6 +15,7 @@
 
 # Advent of Code puzzle inputs
 *.dat
+.DS_Store
 
 # Python
 __pycache__/

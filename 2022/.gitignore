@@ -10,6 +10,7 @@ getinput.py
 
 # Advent of Code puzzle inputs
 *.dat
+.DS_Store
 
 # Distribution / packaging
 .Python
