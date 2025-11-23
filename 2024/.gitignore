@@ -8,6 +8,12 @@ getinput.py
 data/*.dat
 *.dat
 .DS_Store
+.venv/
+venv/
+.env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 *.rsuser
 *.suo
 *.user
