@@ -15,7 +15,10 @@
 *.userprefs
 
 # Advent of Code puzzle inputs
-*.dat
+input_day*.dat
+# Allow committed fixtures for tests
+!testinput_day*.dat
+!*/testinput_day*.dat
 
 # Python
 __pycache__/
