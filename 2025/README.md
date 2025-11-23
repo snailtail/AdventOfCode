@@ -1,12 +1,16 @@
 # Advent of Code 2025
 
-Detta är min mapp för Advent of Code 2025. Tanken är att jag ska försöka lösa årets pussel med Python.
+[![2025 Python Tests](https://github.com/snailtail/AdventOfCode/actions/workflows/2025-python.yml/badge.svg)](https://github.com/snailtail/AdventOfCode/actions/workflows/2025-python.yml)
+
+Här försöker jag mig på att lösa [Advent of Code 2025](https://adventofcode.com/2025).  
+
+Detta år gör jag ett nytt försök att använda Python för att lösa pusslen.
 
 Planen är enkel:
 - Ladda ner dagens pussel från https://adventofcode.com/2025.
 - Spara eventuella anteckningar eller lösningar här allt eftersom jag kommer igång.
 
-Lycka till och god puzzling!
+
 
 ## Exempel (Day 00)
 
@@ -22,4 +26,4 @@ Kör exempel:
 
 Inputfiler:
 - `input_dayXX.dat` ignoreras i git (se `.gitignore`), så lägg dina riktiga Advent of Code-inputs lokalt.
-- `testinput_dayXX.dat` är whitelistan och kan checkas in som fixtures för pytest.
+- `testinput_dayXX.dat` är whitelistat och kan checkas in som fixtures för pytest.
