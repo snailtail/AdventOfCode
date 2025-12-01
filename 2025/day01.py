@@ -1,6 +1,6 @@
 """Day 01: Safe Combination Lock"""
 
-def setup():
+def setup(input_file="testinput_day01.dat"):
     input_data = []
     with open("testinput_day01.dat", "r") as f:
         for line in f:

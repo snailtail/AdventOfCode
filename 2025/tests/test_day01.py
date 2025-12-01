@@ -1,10 +1,11 @@
 from pathlib import Path
 
-from day01 import part1, part2, move_part2
+from day01 import part1, part2, move_part2, setup
 dial = 50
 
 def test_solutions() -> None:
-    data = [('L', 68), ('L', 30), ('R', 48), ('L', 5), ('R', 60), ('L', 55), ('L', 1), ('L', 99), ('R', 14), ('L', 82)]
+    base_path = Path(__file__).parent.parent
+    data = setup(base_path / "testinput_day00.dat")
     assert part1(data) == 3
     assert part2(data) == 6
 
