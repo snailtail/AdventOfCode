@@ -1,16 +1,10 @@
 """ Day 2: Gift Shop """
 
 def setup(path):
-    data = []
     with open(path, "r") as f:
-        input = f.readlines()[0].split(",")
-        for v in input:
-            parts = v.split("-")
-            v = (int(parts[0]), int(parts[1]))
-            data.append(v)
-    return data
-
-
+        input = f.readline().strip().split(",")
+        return [tuple(int(x) for x in s.split("-")) for s in input]
+        
 
 def part1(data):
     invalid_ids = []
