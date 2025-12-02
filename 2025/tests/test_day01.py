@@ -5,7 +5,7 @@ dial = 50
 
 def test_solutions() -> None:
     base_path = Path(__file__).parent.parent
-    data = setup(base_path / "testinput_day00.dat")
+    data = setup(base_path / "testinput_day01.dat")
     assert part1(data) == 3
     assert part2(data) == 6
 
