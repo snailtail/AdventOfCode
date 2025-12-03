@@ -38,3 +38,18 @@ for le in range(1,len(s)):
         invalid_ids.append(v)
         break
 ```
+
+### Dag 3: Lobby  
+
+#### Del 1  
+
+Här började jag - korkat nog - med att leta efter de två största siffrorna i varje nummersekvens - och sen sätta ihop dem. Det tog inte så lång tid att montera den lösningen.  
+Men jag borde kanske ha förstått vad som skulle komma i del 2.. :D. 
+
+#### Del 2  
+
+Nu skulle man inte ha 2 siffror längre, utan 12. Så då föll hela lösningen från del 1 till föga. Jag kan ju inte hålla ordning på 12 siffror och deras inbördes ordning på det viset.  
+Först föll tanken på permutationer, men jag insåg att det ju skulle förändra inbördes ordningen på siffrorna - och dels att permutera strängar med 100 tecken skulle ta "lite väl lång tid".  
+Efter mycket funderande och testande kom jag fram till att en stack kunde lösa detta. Att gå från most significant till least significant och kolla hela tiden om den förra siffran var mindre än nuvarande - och i så fall plocka bort den - tills man har rätt antal kvar. Det blev en lösning som tog lite puts att få till, men den fungerar ju bra oavsett längden man vill ha. Mycket tur idag med tror jag :D  
+Tyvärr orkade jag inte börja med testerna, jag får se om jag kompletterar dagen med tester senare.  
+Egentligen vill jag ju köra testdrivet.  

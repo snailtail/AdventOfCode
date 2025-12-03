@@ -1,5 +1,4 @@
 """ Day 3: Lobby """
-import itertools
 
 def setup(path):
     """
