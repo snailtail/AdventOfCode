@@ -23,4 +23,4 @@ def test_get_removable_rolls() -> None:
     base_path = Path(__file__).parent.parent
     data = parse_input()
     removable_rolls = get_removable_rolls(data)
-    assert removable_rolls == 13
+    assert len(removable_rolls) == 13
