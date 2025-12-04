@@ -53,3 +53,14 @@ Först föll tanken på permutationer, men jag insåg att det ju skulle föränd
 Efter mycket funderande och testande kom jag fram till att en stack kunde lösa detta. Att gå från most significant till least significant och kolla hela tiden om den förra siffran var mindre än nuvarande - och i så fall plocka bort den - tills man har rätt antal kvar. Det blev en lösning som tog lite puts att få till, men den fungerar ju bra oavsett längden man vill ha. Mycket tur idag med tror jag :D  
 Tyvärr orkade jag inte börja med testerna, jag får se om jag kompletterar dagen med tester senare.  
 Egentligen vill jag ju köra testdrivet.  
+
+### Dag 4: Printing Department  
+
+#### Del 1  
+
+Inga konstigheter här, navigera en grid och räkna angränsande saker.  
+
+#### Del 2  
+
+Lustigt nog inga större konstigheter här heller, hade nog förväntat mig en svårare twist.  
+En ganska enkel while loop tills inga entiteter går att "ta bort" längre.
