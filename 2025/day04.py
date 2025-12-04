@@ -12,7 +12,7 @@ def setup(path):
         #print(input)
         return input
 
-def adjacent_rolls(grid, row, col):
+def get_adjacent_rolls(grid, row, col):
     """
         Takes in a grid, a row index, and a column index.
         Returns the count of rolls in the adjacent potential 8 grids.
@@ -37,10 +37,10 @@ def get_removable_rolls(grid):
     """
 
     removable_rolls = []
-    for r in range(len(data)):
-        for c in range(len(data[0])):
-            if data[r][c]=='@':
-                amount = adjacent_rolls(data,r,c)
+    for r in range(len(grid)):
+        for c in range(len(grid[0])):
+            if grid[r][c]=='@':
+                amount = get_adjacent_rolls(grid,r,c)
                 if amount < 4:
                     removable_rolls.append((r,c))
 
@@ -56,7 +56,7 @@ def part1(data):
     for r in range(len(data)):
         for c in range(len(data[0])):
             if data[r][c]=='@':
-                amount = adjacent_rolls(data,r,c)
+                amount = get_adjacent_rolls(data,r,c)
                 if amount < 4:
                     count += 1
     return count
