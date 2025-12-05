@@ -91,7 +91,7 @@ def print_grid(grid):
 
 
 if __name__ == "__main__":
-    data = setup("input_day04.dat")
+    data = setup("testinput_day04.dat")
     part1_result = len(get_removable_rolls(data))
     print("Part 1:", part1_result)
     part2_result = part2(data)

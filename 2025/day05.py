@@ -80,7 +80,7 @@ def get_all_valid_id_count(ranges):
 
 
 if __name__ == "__main__":
-    (ranges, ids) = setup("input_day05.dat")
+    (ranges, ids) = setup("testinput_day05.dat")
 
     valid = get_valid_ids(ids,ranges)
     print("Part 1:", len(valid))

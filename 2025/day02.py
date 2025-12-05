@@ -43,6 +43,6 @@ if __name__ == "__main__":
     
     data = setup("testinput_day02.dat")
     p1_result = sum(part1(data))
-    print(p1_result)
+    print("Part 1:", p1_result)
     p2_result = sum(part2(data))
-    print(p2_result)
+    print("Part 2:", p2_result)
