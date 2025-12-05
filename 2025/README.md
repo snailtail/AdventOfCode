@@ -64,3 +64,17 @@ Inga konstigheter här, navigera en grid och räkna angränsande saker.
 
 Lustigt nog inga större konstigheter här heller, hade nog förväntat mig en svårare twist.  
 En ganska enkel while loop tills inga entiteter går att "ta bort" längre.
+
+
+### Dag 5: Cafeteria  
+
+#### Del 1  
+
+Inte några direkta konstigheter nu heller, det enda var att jag läste felaktigt att jag skulle hitta alla ogiltiga ingredigenser - så jag byggde en onödigt komplex lösning för del 1. När jag läste ordentligt och insåg att jag bara skulle hitta alla giltiga id'n så satt jag med lite mer komplexitet än jag behövde, men svaret fanns ju också där så det var väl okej antar jag :D  
+
+#### Del 2  
+
+Först tänkte jag att jag bara kunde köra enkel matematik och subtrahera stop - start och lägga till 1 för att få antal tal inom varje range. Men då ignorerade jag ju faktumet att ranges kan överlappa. Det tog en god stund att klura ut en lösning på det. Lösningen blev att gå igenom alla ranges och göra en "merge" av överlappande. Först sortera dem efter startvärdet, och sen kolla om nästa ranges start var mindre än nuvarande end, och slå ihop dem bara.
+Därefter kunde man göra så som jag tänkte från början, och subtrahera stop - start och addera 1 för att få antalet tal inom varje range - utan att riskera att få dubbletter.  
+
+Jag testade faktiskt en variant med att göra ett set av alla id'n från varje range, men det var duktigt stora ranges att loopa över så det var inte riktigt genomförbart i praktiken.  
