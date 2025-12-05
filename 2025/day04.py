@@ -9,7 +9,6 @@ def setup(path):
     """
     with open(path,"r") as f:
         input = [list(f.strip()) for f in f.readlines()]
-        #print(input)
         return input
 
 def get_adjacent_rolls(grid, row, col):
