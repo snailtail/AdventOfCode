@@ -78,3 +78,22 @@ Först tänkte jag att jag bara kunde köra enkel matematik och subtrahera stop 
 Därefter kunde man göra så som jag tänkte från början, och subtrahera stop - start och addera 1 för att få antalet tal inom varje range - utan att riskera att få dubbletter.  
 
 Jag testade faktiskt en variant med att göra ett set av alla id'n från varje range, men det var duktigt stora ranges att loopa över så det var inte riktigt genomförbart i praktiken.  
+
+### Dag 6: Trash Compactor  
+
+#### Del 1  
+
+Inga bekymmer alls här, var orolig att jag inte läst ordentligt - men det var bara att bygga en grid med tal och göra lite beräkningar. Det klurigaste är att parse:a och loopa igenom datan rätt när man ska gå kolumnvis neråt i gridden. Men egentligen inget konstigt.  
+
+### Del 2  
+
+Oväntat enkelt för en uppgift på helgen och del 2. Jag trodde det skulle komma någon större twist.  
+Jag såg framför mig en grid med chars, och en baklängesloop kolumnvis som "hittar" tal, och som sen agerar när den stöter på en + eller * char.  
+Det enda trixiga här var att hitta bra logik för att veta när det är dags att summera och "återställa" för nästa grupp av tal. Man kan lätt sno in sig i looparna om man inte har en strategi klar.  
+Här tog jag mig tiden att skriva pseudokod först, för att se om jag hade några hål i logiken.  
+Jag hade ändå missat en "nollställning" vid summeringen, men det syntes snabbt vid lite print debugging.  
+Jag önskar jag kunde säga att jag byggde testerna först - det gjorde jag inte.  
+Hade jag gjort det ordenligt hade jag säkert hittat de logikfelen därigenom.  
+Men det fördröjde mig inte så många sekunder även utan testerna.  
+Testerna idag tillkom efter lösningarna var klara. Jag erkänner! :D  
+
