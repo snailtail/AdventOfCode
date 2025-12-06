@@ -1,5 +1,5 @@
 """
---- Day 4: Cafeteria ---
+--- Day 5: Cafeteria ---
 """
 
 def setup(path):

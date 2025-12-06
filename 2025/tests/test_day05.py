@@ -1,4 +1,3 @@
-from ast import parse
 from pathlib import Path
 
 from day05 import setup, get_valid_ids, get_invalid_ids, merge_ranges, get_all_valid_id_count
