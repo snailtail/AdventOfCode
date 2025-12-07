@@ -44,6 +44,10 @@ def get_start_position(grid):
 
 
 def get_splitter_indexes(grid, row):
+    """
+        Just an easy way to find grid positions for "splitters"
+        Returns: Set of column indexes for the current row where "splitters" are found
+    """
     splitter_indexes = set()
     for pos, v in enumerate(grid[row]):
         if v == '^':
@@ -101,12 +105,16 @@ def part2(grid):
     ways[s_row][s_col]=1 # 
     cur_row = s_row + 1
     while cur_row < grid_height:
+        splitter_indexes = get_splitter_indexes(grid,cur_row)
         for cur_col in range(grid_width):
-            # om vi hittar en splitter här så ska vi plussa på +1 på cur_col-1 och cur_col +1
+            # kolla vad som kommer ovanifrån
             incoming = ways[cur_row-1][cur_col]
             if incoming == 0:
+                # om inga inkommande strålar/vägar hoppar vi över den här cellen.
                 continue
-            if grid[cur_row][cur_col]=='^':
+
+            # nu vet vi att vi har en eller flera inkommande vägar ovanifrån.
+            if cur_col in splitter_indexes:
                 lvalue = cur_col - 1
                 rvalue = cur_col + 1
                 if lvalue >= 0:
@@ -119,11 +127,10 @@ def part2(grid):
 
     # och när vi är färdiga så borde totala antalet vägar bli summan av "sista raden"
     total_ways = sum(ways[-1])
-
     return total_ways
 
 if __name__ == "__main__":
-    data = setup("input_day07.dat")
+    data = setup("testinput_day07.dat")
     p1_result = part1(data)
     print("Part 1:", p1_result)
     p2_result = part2(data)
