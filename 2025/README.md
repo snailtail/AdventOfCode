@@ -97,3 +97,11 @@ Hade jag gjort det ordenligt hade jag säkert hittat de logikfelen därigenom.
 Men det fördröjde mig inte så många sekunder även utan testerna.  
 Testerna idag tillkom efter lösningarna var klara. Jag erkänner! :D  
 
+### Dag 7: Laboratories  
+
+### Del 1  
+Lite klurigare idag känns det som, men efter lite fundering konstaterade jag att för del 1 är det egentligen bara kolumnerna som är intressanta. Att hålla ordning på de unika kolumner som "just nu" har en "beam" när man rör sig genom gridden neråt rad för rad. Och om man stöter på en splitter så byter man ut en beam mot två st nya. Set:et håller själv ordning på att det inte blir dubbletter.  
+
+### Del 2  
+
+Oh boy... Quantum tachyon manifolds minsann... Det här blir att fundera lite mer på.  
