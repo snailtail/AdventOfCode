@@ -82,8 +82,49 @@ def part1(grid):
     return split_count
 
 
+def part2(grid):
+    """
+        Counts number of ways one tachyon particle will take via the quantum tachyon manifolds (splitters)
+        Returns the total count of these ways
+    """
+    # Håll en grid med antal gånger man kommer hamna i den cellen
+    # för varje rad, kolla cellerna på kolumn-index där antal inkommande vägar uppifrån är större än 0
+    # varje gång man stöter på en splitter ska man ta inkommande antal från raden ovan, och plussa på det på nuvarande rad fast vid col-1 och col+1 jämfört med splittern
+    # om man inte stöter på en splitter så ska det inkommande värdet plussas på i nuvarande kolumnindex bara.
+    # lite koll på att man befinner sig innanför gridden osv. 
+    # sen är det bara att summera antalet vägar på sista raden - det blir totala antalet kombinationer
+
+    (s_row,s_col) = get_start_position(grid)
+    grid_width = len(grid[0])
+    grid_height = len(grid)
+    ways = [[0 for x in range(grid_width)] for y in range(grid_height)] # här håller vi "räkningen" på hur många gånger en stråle kan passera en viss grid (tror jag)
+    ways[s_row][s_col]=1 # 
+    cur_row = s_row + 1
+    while cur_row < grid_height:
+        for cur_col in range(grid_width):
+            # om vi hittar en splitter här så ska vi plussa på +1 på cur_col-1 och cur_col +1
+            incoming = ways[cur_row-1][cur_col]
+            if incoming == 0:
+                continue
+            if grid[cur_row][cur_col]=='^':
+                lvalue = cur_col - 1
+                rvalue = cur_col + 1
+                if lvalue >= 0:
+                    ways[cur_row][lvalue] += incoming
+                if rvalue < grid_width:
+                    ways[cur_row][rvalue] += incoming
+            elif ways[cur_row-1][cur_col]>0:
+                ways[cur_row][cur_col] += incoming
+        cur_row += 1
+
+    # och när vi är färdiga så borde totala antalet vägar bli summan av "sista raden"
+    total_ways = sum(ways[-1])
+
+    return total_ways
 
 if __name__ == "__main__":
     data = setup("input_day07.dat")
     p1_result = part1(data)
     print("Part 1:", p1_result)
+    p2_result = part2(data)
+    print("Part 2:", p2_result)

@@ -1,7 +1,7 @@
 from ast import parse
 from pathlib import Path
 
-from day07 import setup, get_start_position, get_splitter_indexes, part1
+from day07 import setup, get_start_position, get_splitter_indexes, part1, part2
 
 
 def parse_testdata(path="testinput_day07.dat"):
@@ -62,3 +62,9 @@ def test_solution_p1():
     p1_expected = 21
     p1_result = part1(data)
     assert p1_result == p1_expected
+
+def test_solution_p2():
+    data = parse_testdata()
+    p2_expected = 40
+    p2_result = part2(data)
+    assert p2_result == p2_expected
