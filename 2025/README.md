@@ -85,7 +85,7 @@ Jag testade faktiskt en variant med att göra ett set av alla id'n från varje r
 
 Inga bekymmer alls här, var orolig att jag inte läst ordentligt - men det var bara att bygga en grid med tal och göra lite beräkningar. Det klurigaste är att parse:a och loopa igenom datan rätt när man ska gå kolumnvis neråt i gridden. Men egentligen inget konstigt.  
 
-### Del 2  
+#### Del 2  
 
 Oväntat enkelt för en uppgift på helgen och del 2. Jag trodde det skulle komma någon större twist.  
 Jag såg framför mig en grid med chars, och en baklängesloop kolumnvis som "hittar" tal, och som sen agerar när den stöter på en + eller * char.  
@@ -99,9 +99,28 @@ Testerna idag tillkom efter lösningarna var klara. Jag erkänner! :D
 
 ### Dag 7: Laboratories  
 
-### Del 1  
+#### Del 1  
 Lite klurigare idag känns det som, men efter lite fundering konstaterade jag att för del 1 är det egentligen bara kolumnerna som är intressanta. Att hålla ordning på de unika kolumner som "just nu" har en "beam" när man rör sig genom gridden neråt rad för rad. Och om man stöter på en splitter så byter man ut en beam mot två st nya. Set:et håller själv ordning på att det inte blir dubbletter.  
 
-### Del 2  
+#### Del 2  
 
 Oh boy... Quantum tachyon manifolds minsann... Det här blir att fundera lite mer på.  
+Det var kanske inte så krångligt som jag först trodde.  
+Om man går igenom varje rad, letar efter varje splitter - och så håller man reda på hur många "potentiella vägar" i en lika stor grid, och så kollar för varje cell.  
+Om man stöter på en splitter:  
+Finns det några vägar som leder ner till den här splittern? I så fall ska grid:arna till höger och vänster om den här splittern just nu plussas på med antalet inkommande vägar "ovanifrån".  
+Om man inte stöter på nån splitter (tom cell):  
+Då ska eventuella inkommande vägar ovanifrån bara plussas på i aktuell cell.  
+
+Detta var på flera sätt ett intressant problem just i del 2.  
+Det är typexemplet för när själva problembeskrivningen "skrämmer" mig att först tro att det knappt är någon idé att jag ger mig på att lösa det.  
+Men trots ord som "Quantum" och mitt mentala bildspel av osäkerhetsprinciper och katter i lådor med mera, så var själva problemet egentligen inte så svårt. Det var ju dessutom garanterat att partikeln skulle ta både höger och vänster väg genom en splitter, så det underlättade ju verkligen.  
+Men det var tur att man åtminstone bara skulle hålla koll på en riktning (nedåt i gridden) om man säger så. Det blev ett ganska stort antal vägar. :D.  
+
+#### Tester 
+
+Idag började jag med testerna!  
+Yayy!  
+Sen att det inte blev så mycket tester mot själva lösningarnas invärtes funktionalitet i sig är ju en annan sak.  
+:D  
+Man får va glad för det lilla!  
