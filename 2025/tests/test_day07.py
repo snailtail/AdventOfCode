@@ -1,4 +1,3 @@
-from ast import parse
 from pathlib import Path
 
 from day07 import setup, get_start_position, get_splitter_indexes, part1, part2
