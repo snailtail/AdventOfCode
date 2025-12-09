@@ -48,7 +48,7 @@ def setup(path="testinput_day08.dat"):
 def get_pairs_with_distances(coordinates):
     """
         Takes a list of Coordinate and calculates distances between pairs.
-        Returns a list representing (Distance, Coord x, Coord y)
+        Returns a list representing (Distance, Coord x index, Coord y index)
     """
     pairs = []
     for i in range(len(coordinates)):

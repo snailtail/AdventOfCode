@@ -124,3 +124,15 @@ Yayy!
 Sen att det inte blev så mycket tester mot själva lösningarnas invärtes funktionalitet i sig är ju en annan sak.  
 :D  
 Man får va glad för det lilla!  
+
+### Dag 8: Playground  
+
+#### Del 1  
+
+Yikes..! Hitta punkter i 3D-space, gruppera efter vilka som är närmast varandra, räkna grupper.  
+Först tänkte jag att det gick att räkna avståndet från "origo" 0,0,0 till varje punkt, och utifrån det gruppera dem. Men det visar sig att det inte hänger ihop med avståndet mellan två punkter nödvändigtvis.  
+Jag tror att jag hittat ett sätt att få ihop dem parvis i alla fall tillsammans med det inbördes avståndet, en kostsam operation och man får ju kolla alla kombinationerna - vilket med testinputen ger 190 kombinationer av par, och med den fulla inputen 499 500 kombinationer. Den listan går att sortera efter avståndet, så nu finns det i alla fall en bas att utgå från.  
+Nu behöver man "bara" skapa grupper av paren och hålla koll på dem på något vis.  
+Jag tänkte linked list, men efter lite laborationer insåg jag att det lätt skulle bli loopar i den - vilket jag inte vill ha.  
+Jag ska bolla lite med "AI" och se om vi kan arbeta oss fram till någon lämplig datastruktur för att hålla koll på detta.  
+
