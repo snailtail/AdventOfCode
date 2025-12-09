@@ -136,3 +136,12 @@ Nu behöver man "bara" skapa grupper av paren och hålla koll på dem på något
 Jag tänkte linked list, men efter lite laborationer insåg jag att det lätt skulle bli loopar i den - vilket jag inte vill ha.  
 Jag ska bolla lite med "AI" och se om vi kan arbeta oss fram till någon lämplig datastruktur för att hålla koll på detta.  
 
+Vi hittade nåt som kallas DisjointSet - Ett sätt att hålla koll på och slå samman grupper. Varje punkt är först sin egen grupp, och roten i sin egen grupp.
+Sen går man igenom dem efter inbördes avstånd, och kopplar ihop dem med varandra.  
+
+#### Del 2  
+
+En twist - som vanligt på del 1.  
+Joina ihop alla par och håll koll på de två sista som kopplades ihop med något, vilka är det?
+Multiplicera sedan deras X koordinater med varandra.  
+Här var jag tvungen att förlita mig på ChatGPT för att reda ut problemet och hitta rätt algoritm - jag snurrade ner mig långt ner i källaren med problembeskrivningen och förstod fel ganska länge.  

@@ -1,6 +1,7 @@
 """
 Day 8: Playground
 """
+
 import math
 import pprint
 
@@ -36,29 +37,25 @@ class Coordinate:
         self.x = x
         self.y = y
         self.z = z
-        
+
     @property
     def distance_from_origin(self):
         return math.sqrt(self.x**2 + self.y**2 + self.z**2)
 
     def distance_to(self, other):
         return math.sqrt(
-            (self.x - other.x)**2 +
-            (self.y - other.y)**2 +
-            (self.z - other.z)**2
+            (self.x - other.x) ** 2 + (self.y - other.y) ** 2 + (self.z - other.z) ** 2
         )
 
     def __repr__(self):
         return f"Coordinate({self.x}, {self.y}, {self.z})"
 
-    
-    
 
 def setup(path="testinput_day08.dat"):
     """
     Parses input and returns a list of Coordinates representing junction boxes
     Example:
-           
+
     """
     input = []
     with open(path, "r") as f:
@@ -67,20 +64,21 @@ def setup(path="testinput_day08.dat"):
             mycoord = Coordinate(x, y, z)
 
             input.append(mycoord)
-    #sorted_points = sorted(input, key=lambda p: p.distance_from_origin)
-    #input.sort(key = lambda p: p.distance_from_origin)
+    # sorted_points = sorted(input, key=lambda p: p.distance_from_origin)
+    # input.sort(key = lambda p: p.distance_from_origin)
 
-    #return sorted_points
+    # return sorted_points
     return input
+
 
 def get_pairs_with_distances(coordinates):
     """
-        Takes a list of Coordinate and calculates distances between pairs.
-        Returns a list representing (Distance, Coord x index, Coord y index)
+    Takes a list of Coordinate and calculates distances between pairs.
+    Returns a list representing (Distance, Coord x index, Coord y index)
     """
     pairs = []
     for i in range(len(coordinates)):
-        for j in range(i+1, len(coordinates)):
+        for j in range(i + 1, len(coordinates)):
             p1 = coordinates[i]
             p2 = coordinates[j]
             dist = p1.distance_to(p2)
@@ -102,25 +100,45 @@ def apply_shortest_connections(num_points, pairs, k):
 
     return ds
 
+
 def part1(data, num_points, depth):
-    num_points
     roots = set()
-    ds = apply_shortest_connections(num_points,pairs,depth)
+    ds = apply_shortest_connections(num_points, data, depth)
     for i in range(num_points):
         roots.add(ds.find(i))
 
     circuit_sizes = [ds.size[root] for root in roots]
     circuit_sizes.sort(reverse=True)
-    pprint.pprint(roots)
-    for s in circuit_sizes[0:3]:
-        print("Size: ",s)
     return math.prod(circuit_sizes[0:3])
 
 
+def part2(coordinates, pairs):
+    n = len(coordinates)
+    ds = DisjointSet(n)
+    component_count = n
+    last_a = last_b = None
+
+    for dist, i, j in pairs:
+        if ds.union(i, j):          # bara om en verklig sammanslagning sker
+            component_count -= 1
+            last_a, last_b = i, j   # den senaste kopplingen som gjorde skillnad
+            if component_count == 1:
+                break
+
+    x1 = coordinates[last_a].x
+    x2 = coordinates[last_b].x
+    return x1 * x2
+
+
+
 if __name__ == "__main__":
-    coordinates = setup("input_day08.dat")
+    coordinates = setup("testinput_day08.dat")
     pairs = get_pairs_with_distances(coordinates)
-    print(f"Found {len(pairs)} combinations of pairs")
-    
-    p1 = part1(pairs,20,10) # for test input
+
+    p1 = part1(pairs, 20, 10)  # for test input
     #p1 = part1(pairs,1000,1000) # for prod input
+    print("Part 1:", p1)
+
+    
+    p2 = part2(coordinates,pairs)  # for test input
+    print("Part2:", p2)
