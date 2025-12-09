@@ -2,6 +2,34 @@
 Day 8: Playground
 """
 import math
+import pprint
+
+
+class DisjointSet:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.size = [1] * n
+
+    def find(self, x):
+        # hitta rot (med path compression)
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, a, b):
+        ra = self.find(a)
+        rb = self.find(b)
+        if ra == rb:
+            return False  # redan samma krets
+
+        # union by size
+        if self.size[ra] < self.size[rb]:
+            ra, rb = rb, ra
+
+        self.parent[rb] = ra
+        self.size[ra] += self.size[rb]
+        return True
+
 
 class Coordinate:
     def __init__(self, x, y, z):
@@ -63,10 +91,36 @@ def get_pairs_with_distances(coordinates):
     return pairs
 
 
+def apply_shortest_connections(num_points, pairs, k):
+    ds = DisjointSet(num_points)
+
+    # pairs måste vara sorterade på dist redan
+    for idx, (dist, a, b) in enumerate(pairs):
+        if idx >= k:
+            break
+        ds.union(a, b)  # om de redan sitter ihop händer inget
+
+    return ds
+
+def part1(data, num_points, depth):
+    num_points
+    roots = set()
+    ds = apply_shortest_connections(num_points,pairs,depth)
+    for i in range(num_points):
+        roots.add(ds.find(i))
+
+    circuit_sizes = [ds.size[root] for root in roots]
+    circuit_sizes.sort(reverse=True)
+    pprint.pprint(roots)
+    for s in circuit_sizes[0:3]:
+        print("Size: ",s)
+    return math.prod(circuit_sizes[0:3])
+
 
 if __name__ == "__main__":
-    coordinates = setup("testinput_day08.dat")
+    coordinates = setup("input_day08.dat")
     pairs = get_pairs_with_distances(coordinates)
     print(f"Found {len(pairs)} combinations of pairs")
-    for d, c1, c2 in pairs:
-        print(d, c1, c2)
+    
+    p1 = part1(pairs,20,10) # for test input
+    #p1 = part1(pairs,1000,1000) # for prod input
