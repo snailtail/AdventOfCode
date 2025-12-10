@@ -182,41 +182,34 @@ def edge_intersects_rect_interior(edge: Edge, xmin: int, xmax: int, ymin: int, y
 def rectangle_inside_polygon(c1: Coordinate, c2: Coordinate, edges: list[Edge]) -> bool:
     xmin, xmax, ymin, ymax = get_rect_from_coords(c1, c2)
 
-    # Degenererad rektangel (linje) – hoppa över om du ändå aldrig använder dem
+    # A recangle consisting of only a line let's skip these since we probably won't find one with a large area
     if xmin == xmax or ymin == ymax:
         return False
 
-    # 1) Ta en punkt inuti rektangeln – mitten
+    # Find the center of the rectangle
     cx = (xmin + xmax) / 2.0
     cy = (ymin + ymax) / 2.0
 
-    # Om mitten inte är inne i polygonen → rektangeln kan inte vara helt inne
+    # If the middle is not inside the polygon the rectangle is not completely inside either.
     if not point_in_polygon(cx, cy, edges):
         return False
 
-    # 2) Säkerställ att ingen kant skär rektangelns inre
+    # Make sure that no edge cuts through the inside of the rectangle (costly, but I don't understand enough to avoid doing this)
     for e in edges:
         if edge_intersects_rect_interior(e, xmin, xmax, ymin, ymax):
             return False
 
-    # Mitten är inne och inga kanter skär inre → rektangeln ligger helt inne
+    # The center of the rectangle is inside the polygon, and no edges cut through the inside of the rectangle -> the rectangle is completely inside the polygon
     return True
 
 
 if __name__ == "__main__":
     coordinates = setup("testinput_day09.dat")
     
-    #print(coordinates)
     pairs = get_pairs_with_area(coordinates)
-    #p1_max_area = 0
-    #for (pair_distance,i,j) in p1_pairs:
-    #    
-    #    area = get_area(coordinates[i], coordinates[j])
-    #    print(area,coordinates[i], coordinates[j])
-    #    p1_max_area = max(area,p1_max_area)
+
+    # part 1 is the largest area - which we now have in a
     p1_max_area, _, _ = pairs[0]
-
-
     print("Part 1:", p1_max_area)
 
     # For part 2 we need to get the edges
