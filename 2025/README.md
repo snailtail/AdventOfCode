@@ -155,3 +155,14 @@ Hitta motsatta "hörn" som bildar rektanglar (kan vara en rak linje också), och
 Egentligen inget knepigt här, finns säkert nåt mer effektivt sätt att lösa det på men jag körde på att göra alla möjliga par, och jag använde mig av "manhattan distance" mellan punkterna för att avgöra vilka punkter som var längst ifrån varandra.  
 Sen insåg jag att det inte nödvändigtvis bildade den största rektangeln, utan att det defacto var själva area-beräkningen till syvende och sist som avgjorde - och därför körde jag den på samtliga par, och sen valde jag bara ut max area från den beräkningen.  
 
+#### Del 2  
+
+Mitt huvud gör ont bara av att läsa beskrivningen.  
+Jag tror jag har förstått vad som förväntas nu efter många omläsningar och genom att stirra på exemplen. Men jag har ingen direkt bra känsla för hur jag skulle lösa det.  
+Lite kaffe kanske hjälper.  
+Punkterna sitter ihop med varandra och bildar en yta, nu ska man hitta den största rektangeln som håller sig innanför denna yta egentligen. Om jag tolkar och översätter problemet till någotsånär korrekta tankar.  
+Först tänker jag nåt slags fill - med gränspunkter att hålla sig inom, men det blir inte heller bra tror jag.  
+Just nu funderar jag på att lagra alla punkter i "ytterkanterna" av ytan, och sen använda det som gränser när jag kollar rektanglar på samma sätt som i del 1 - men bara räkna rektanglarna som befinner sig innanför gränserna.  
+Jag misstänker dock att den riktiga inputen kommer att generera för många punkter eller nåt sånt, så att det blir "ogörligt" att hantera. Men vi får se. Man måste börja nånstans, och än är jag inte redo att fråga AI om hjälp :D  
+Jag testar att bygga en lista med alla "edges" till att börja med i alla fall.  
+
