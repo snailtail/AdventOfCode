@@ -1,7 +1,7 @@
 from pathlib import Path
 import pytest
 
-from day09 import setup, Coordinate, get_pairs_with_distances, get_area
+from day09 import setup, Coordinate, get_pairs_with_distances, get_area, get_edges, Edge
 
 
 def parse_testdata(path="testinput_day09.dat"):
@@ -73,3 +73,40 @@ def test_get_areas(expected_area, coordinate1, coordinate2):
     
     result = get_area(coordinate1,coordinate2)
     assert result == expected_area
+
+def test_build_edges_example():
+    # Exempeldata från problemets beskrivning
+    coords = [
+        Coordinate(7,1),
+        Coordinate(11,1),
+        Coordinate(11,7),
+        Coordinate(9,7),
+        Coordinate(9,5),
+        Coordinate(2,5),
+        Coordinate(2,3),
+        Coordinate(7,3)
+    ]
+
+    edges = get_edges(coords)
+
+    # Förväntade kanter i exakt ordning
+    expected = [
+        (7,1, 11,1),
+        (11,1, 11,7),
+        (11,7, 9,7),
+        (9,7, 9,5),
+        (9,5, 2,5),
+        (2,5, 2,3),
+        (2,3, 7,3),
+        (7,3, 7,1),   # sista kanten tillbaka till början
+    ]
+
+    # Testa antal kanter
+    assert len(edges) == len(expected)
+
+    # Testa varje kant individuellt
+    for edge, (x1, y1, x2, y2) in zip(edges, expected):
+        assert edge.x1 == x1
+        assert edge.y1 == y1
+        assert edge.x2 == x2
+        assert edge.y2 == y2

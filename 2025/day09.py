@@ -20,6 +20,14 @@ class Coordinate:
 
     def __repr__(self):
         return f"Coordinate({self.x}, {self.y})"
+    
+class Edge:
+    def __init__(self, x1, y1, x2, y2):
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
+
 
 def get_pairs_with_distances(coordinates):
     """
@@ -60,6 +68,22 @@ def setup(path="testinput_day09.dat"):
             input.append(Coordinate(x,y))
     return input
 
+def get_edges(coordinate_list):
+    edge_list = []
+    for i in range(1, len(coordinate_list)):
+        coord1 = coordinate_list[i-1]
+        coord2 = coordinate_list[i]
+
+        edge_list.append(Edge(coord1.x,coord1.y,coord2.x,coord2.y))
+    
+    # Connect the last and the first coordinates as an edge as well
+    coord1 = coordinate_list[-1]
+    coord2 = coordinate_list[0]
+
+    edge_list.append(Edge(coord1.x,coord1.y,coord2.x,coord2.y))
+
+    return edge_list
+
 if __name__ == "__main__":
     coordinates = setup("testinput_day09.dat")
     
@@ -74,3 +98,6 @@ if __name__ == "__main__":
         
 
     print("Part 1:", p1_max_area)
+
+    # For part 2.
+    
