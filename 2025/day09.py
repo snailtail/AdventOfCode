@@ -61,13 +61,15 @@ def setup(path="testinput_day09.dat"):
     return input
 
 if __name__ == "__main__":
-    coordinates = setup("input_day09.dat")
+    coordinates = setup("testinput_day09.dat")
     
     print(coordinates)
     p1_pairs = get_pairs_with_distances(coordinates)
     p1_max_area = 0
     for (pair_distance,i,j) in p1_pairs:
+        
         area = get_area(coordinates[i], coordinates[j])
+        print(area,coordinates[i], coordinates[j])
         p1_max_area = max(area,p1_max_area)
         
 

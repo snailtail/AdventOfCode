@@ -39,3 +39,37 @@ def test_get_area():
     result = get_area(c1,c2)
     assert result == expected
 
+@pytest.mark.parametrize("expected_area, coordinate1, coordinate2", [
+    (50, Coordinate(11, 1), Coordinate(2, 5)),
+    (50, Coordinate(11, 7), Coordinate(2, 3)),
+    (30, Coordinate(11, 1), Coordinate(2, 3)),
+    (30, Coordinate(11, 7), Coordinate(2, 5)),
+    (40, Coordinate(9, 7), Coordinate(2, 3)),
+    (35, Coordinate(7, 1), Coordinate(11, 7)),
+    (30, Coordinate(7, 1), Coordinate(2, 5)),
+    (24, Coordinate(9, 7), Coordinate(2, 5)),
+    (24, Coordinate(9, 5), Coordinate(2, 3)),
+    (21, Coordinate(7, 1), Coordinate(9, 7)),
+    (21, Coordinate(11, 1), Coordinate(9, 7)),
+    (25, Coordinate(11, 7), Coordinate(7, 3)),
+    (18, Coordinate(7, 1), Coordinate(2, 3)),
+    (8, Coordinate(9, 5), Coordinate(2, 5)),
+    (18, Coordinate(2, 5), Coordinate(7, 3)),
+    (15, Coordinate(7, 1), Coordinate(9, 5)),
+    (7, Coordinate(11, 1), Coordinate(11, 7)),
+    (15, Coordinate(11, 1), Coordinate(9, 5)),
+    (15, Coordinate(11, 1), Coordinate(7, 3)),
+    (15, Coordinate(9, 7), Coordinate(7, 3)),
+    (6, Coordinate(2, 3), Coordinate(7, 3)),
+    (5, Coordinate(7, 1), Coordinate(11, 1)),
+    (9, Coordinate(11, 7), Coordinate(9, 5)),
+    (9, Coordinate(9, 5), Coordinate(7, 3)),
+    (3, Coordinate(7, 1), Coordinate(7, 3)),
+    (3, Coordinate(11, 7), Coordinate(9, 7)),
+    (3, Coordinate(9, 7), Coordinate(9, 5)),
+    (3, Coordinate(2, 5), Coordinate(2, 3)),
+    ])
+def test_get_areas(expected_area, coordinate1, coordinate2):
+    
+    result = get_area(coordinate1,coordinate2)
+    assert result == expected_area
