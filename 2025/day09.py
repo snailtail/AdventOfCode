@@ -28,6 +28,9 @@ class Edge:
         self.x2 = x2
         self.y2 = y2
 
+    def __repr__(self):
+        return f"Edge({self.x1},{self.y1}, {self.x2},{self.y2})"
+
 
 def get_pairs_with_distances(coordinates):
     """
@@ -69,6 +72,10 @@ def setup(path="testinput_day09.dat"):
     return input
 
 def get_edges(coordinate_list):
+    """
+    Takes in a list of Coordinate and joins them together as edges
+    Returns a list of Edge
+    """
     edge_list = []
     for i in range(1, len(coordinate_list)):
         coord1 = coordinate_list[i-1]
@@ -83,6 +90,18 @@ def get_edges(coordinate_list):
     edge_list.append(Edge(coord1.x,coord1.y,coord2.x,coord2.y))
 
     return edge_list
+
+def get_rect_from_coords(c1: Coordinate, c2: Coordinate):
+    """
+    Takes in two coordinates and returns the corners of the rectangle they create
+    """
+    xmin = min(c1.x, c2.x)
+    xmax = max(c1.x, c2.x)
+    ymin = min(c1.y, c2.y)
+    ymax = max(c1.y, c2.y)
+    return xmin, xmax, ymin, ymax
+
+
 
 if __name__ == "__main__":
     coordinates = setup("testinput_day09.dat")
@@ -99,5 +118,7 @@ if __name__ == "__main__":
 
     print("Part 1:", p1_max_area)
 
-    # For part 2.
+    # For part 2 we need to get the edges
+    edges = get_edges(coordinates)
+    print(edges)
     
