@@ -14,7 +14,7 @@ def test_machine_parse_example1():
     # kolla andra knappen (1,3)
     assert m.button_masks[1] == (1 << 1) | (1 << 3)
 
-    assert m.joltages == [3, 5, 4, 7]
+    assert m.target_counters == (3, 5, 4, 7)
 
 
 
@@ -98,3 +98,28 @@ def test_min_presses_bruteforce_no_solution():
 
     best = m.min_presses_bruteforce()
     assert best is None
+
+def test_machine_joltages_and_deltas():
+    line = "[.##.] (3) (1,3) (2) (2,3) (0,2) (0,1) {3,5,4,7}"
+    m = Machine(line)
+
+    assert m.target_counters == (3,5,4,7)
+    assert m.num_counters == 4
+
+    # knapp (3)
+    assert m.button_counter_deltas[0] == (0,0,0,1)
+    # knapp (1,3)
+    assert m.button_counter_deltas[1] == (0,1,0,1)
+
+def test_joltage_bfs_examples():
+    line1 = "[.##.] (3) (1,3) (2) (2,3) (0,2) (0,1) {3,5,4,7}"
+    line2 = "[...#.] (0,2,3,4) (2,3) (0,4) (0,1,2) (1,2,3,4) {7,5,12,7,2}"
+    line3 = "[.###.#] (0,1,2,3,4) (0,3,4) (0,1,2,4,5) (1,2) {10,11,11,5,10,5}"
+
+    m1 = Machine(line1)
+    m2 = Machine(line2)
+    m3 = Machine(line3)
+
+    assert m1.min_presses_joltage_bfs() == 10
+    assert m2.min_presses_joltage_bfs() == 12
+    assert m3.min_presses_joltage_bfs() == 11

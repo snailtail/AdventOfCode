@@ -3,6 +3,7 @@ Day 10: Factory
 """
 
 import re
+from collections import deque
 
 class Machine:
     def __init__(self, line: str):
@@ -19,17 +20,34 @@ class Machine:
         #    least significant bit to the left, most significant bit to the right to match the order of the wiring schemes
         self.target_mask = self._pattern_to_mask(self.pattern_str)
 
-        # 3. Plocka ut alla knappar i ( ... )
-        #    re.findall ger t.ex. ["3", "1,3", "2", ...]
+        # 3. Extract all the buttons from ( ... )
         button_parts = re.findall(r'\(([^)]*)\)', self.raw)
         self.button_masks = [self._button_to_mask(part) for part in button_parts]
 
-        # 4. Plocka ut joltage i { ... } (kan ignoreras senare)
+        # 3. Joltages: new structure for part 2
         joltage_match = re.search(r'\{([^}]*)\}', self.raw)
         if joltage_match:
-            self.joltages = [int(x) for x in joltage_match.group(1).split(",")]
+            # ex: "3,5,4,7" -> ["3","5","4","7"] -> (3,5,4,7)
+            self.target_counters = tuple(
+                int(x) for x in joltage_match.group(1).split(",")
+            )
         else:
-            self.joltages = []
+            self.target_counters = tuple()
+
+        self.num_counters = len(self.target_counters)
+
+        # 4. Precompute per-button counter deltas for BFS in part 2
+        #    For each button: a tuple of length num_counters with 0/1 per counter.
+        self.button_counter_deltas = []
+        for mask in self.button_masks:
+            delta = []
+            for i in range(self.num_counters):
+                # om knappen påverkar counter i → +1
+                if mask & (1 << i):
+                    delta.append(1)
+                else:
+                    delta.append(0)
+            self.button_counter_deltas.append(tuple(delta))
 
     def _pattern_to_mask(self, pattern: str) -> int:
         """
@@ -89,12 +107,84 @@ class Machine:
         return best
 
 
+    def min_presses_joltage_bfs(self) -> int | None:
+        """
+        Part 2: BFS i "counter space".
+        Returnerar minsta antal knapptryck för att nå target_counters,
+        eller None om det är omöjligt.
+        """
+        useful_deltas = []
+        for delta in self.button_counter_deltas:
+            if any(delta[i] > 0 and self.target_counters[i] > 0 for i in range(self.num_counters)):
+                useful_deltas.append(delta)
+
+        self.button_counter_deltas = useful_deltas
+
+        target = self.target_counters
+        k = self.num_counters
+
+        for i in range(self.num_counters):
+            if self.target_counters[i] > 0:
+                # kolla om någon delta har 1 i position i
+                if all(delta[i] == 0 for delta in self.button_counter_deltas):
+                    return None
+
+        # Om maskinen inte har några joltages definierade
+        if k == 0:
+            return 0
+
+        start = tuple(0 for _ in range(k))
+        if start == target:
+            return 0
+
+        # BFS-queue: (state, presses_so_far)
+        queue = deque()
+        queue.append((start, 0))
+
+        # Besökta states, så vi inte loopar
+        visited = {start}
+        states_explored = 0
+        while queue:
+            state, presses = queue.popleft()
+            states_explored += 1
+
+            # Prova att trycka på varje knapp en gång
+            for delta in self.button_counter_deltas:
+                # Bygg next_state = state + delta
+                new_vals = []
+                overshoot = False
+                for i in range(k):
+                    val = state[i] + delta[i]
+                    if val > target[i]:
+                        overshoot = True
+                        break
+                    new_vals.append(val)
+
+                if overshoot:
+                    continue
+
+                next_state = tuple(new_vals)
+
+                if next_state in visited:
+                    continue
+
+                if next_state == target:
+                    return presses + 1  # en knapptryckning till
+
+                visited.add(next_state)
+                queue.append((next_state, presses + 1))
+
+        # Ingen lösning hittades
+        print("States explored for this machine:", states_explored)
+        return None
+
+
     def __repr__(self):
         return (
             f"Machine(pattern='{self.pattern_str}', "
             f"target_mask={bin(self.target_mask)}, "
             f"buttons={len(self.button_masks)}, "
-            f"joltages={self.joltages})"
+            f"target_counters={self.target_counters})"
         )
 
 def setup(path="testinput_day10.dat") -> list[Machine]:
@@ -109,9 +199,12 @@ def setup(path="testinput_day10.dat") -> list[Machine]:
     return input
 
 if __name__ == "__main__":
-    machines = setup("input_day10.dat")
-    
+    machines = setup("testinput_day10.dat")
+    #print(machines)
     part1_fewest_buttonpresses_total = 0
+    part2_fewest_buttonpresses_total = 0
     for machine in machines:
         part1_fewest_buttonpresses_total += machine.min_presses_bruteforce()
+        part2_fewest_buttonpresses_total +=  machine.min_presses_joltage_bfs()
     print("Part 1:", part1_fewest_buttonpresses_total)
+    print("Part 2:", part2_fewest_buttonpresses_total)
