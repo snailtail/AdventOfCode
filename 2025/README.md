@@ -171,3 +171,13 @@ Jag googlade runt på diverse dåliga sökuttryck, innan jag slutligen gav upp o
 Här tog det en god stund för mig att förstå, och det hjälpte inte helt ändå - för nu snackar vi geometri och beräkningar på en nivå som jag aldrig gjort innan. Att kolla om en punkt befinner sig inuti en polygon (min "yta") och sen avgöra om en rektangel helt befinner sig innanför ytan med hjälp av att kolla skärningspunkter - var något som jag till sist fick be om hjälp med att förstå hur man skriver funktioner för.  
 Så tack ChatGPT för de två funktioner som hjälpte mig med geometrin, samt coachningen att förstå hur de hänger ihop tillräckligt väl för att jag skulle kunna bygga logiken för del 2. :D  
 __point_in_polygon__ samt __edge_intersects_rect_interior__  
+
+
+### Dag 10: Factory  
+
+#### Del 1  
+
+Wow... När jag läste beskrivninen första gången imorse vid frukost så tänkte jag att det inte var nån idé alls att ens försöka sig på dagens problem.  
+Efter lite jobb, och lunch i magen så läste jag om den igen och får en känsla av att det är bitwise jämförelser jag behöver använda. Kanske xor.  
+Måste grunna lite mer på det!  
+
