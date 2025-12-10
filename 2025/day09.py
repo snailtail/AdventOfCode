@@ -204,7 +204,7 @@ def rectangle_inside_polygon(c1: Coordinate, c2: Coordinate, edges: list[Edge]) 
 
 
 if __name__ == "__main__":
-    coordinates = setup("input_day09.dat")
+    coordinates = setup("testinput_day09.dat")
     
     #print(coordinates)
     pairs = get_pairs_with_area(coordinates)
