@@ -180,4 +180,19 @@ __point_in_polygon__ samt __edge_intersects_rect_interior__
 Wow... När jag läste beskrivninen första gången imorse vid frukost så tänkte jag att det inte var nån idé alls att ens försöka sig på dagens problem.  
 Efter lite jobb, och lunch i magen så läste jag om den igen och får en känsla av att det är bitwise jämförelser jag behöver använda. Kanske xor.  
 Måste grunna lite mer på det!  
+Det är inte jämförelser, det är xor bitmask jag behöver!  
+Jag har gjort något sådant någon gång förut, men jag hittar det inte nu så jag får googla vidare :D  
+Okej, så parsing av input så att Machine instansen får lösa det - och nu har den koll på sin egen "pattern_string" som visar hur det önskade målläget ska se ut, en count på hur många lampor den har, en bitmask för önskat läge, en lista med bitmasks för knapparna, och en lista av joltages.  
+Oklart var joltages ska va till, men det kommer väl i del 2 om vi någonsin tar oss så långt.  
+Nu finns det möjlighet att loopa över knapparna och xor:a dem med maskinens nuvarande state och se hur många knapptryckningar man behöver göra för att hitta önskad state.  
+Det här har jag nu hållt på med tills jag ifrågasatte min lämplighet att sitta vid den här datamaskinen överhuvudtaget - hur svårt skulle det vara?!? Tydligen otroligt svårt.  
+Jag bad till sist AI om hjälp att hitta ett sätt att bruteforce:a mig igenom knapptryckningskombinationerna och räkna vilken "billigaste" kombo som resulterade i rätt target state.  
+Det visar sig att det finns ett antal smarta sätt som man kan göra detta på, bitmasker för alla kombinationer av knappar istället för flernivå loopar, och så kollar man bitwise om just den här knappen ska tryckas på just nu i en inre loop.  
+På så sätt köttar man sig igenom alla kombinationer. Dessutom kom AI med ett förbättringsförslag att man skulle låta bli att kolla alla masker som har lika eller sämre bit_count() än den hittills bästa lösningen, så snabbar man upp det hela.
 
+Så med facit i hand, och mycket hjälp av AI hade jag egentligen rätt vid frukosten. Det här skulle jag inte gett mig in på :-D  
+Men å andra sidan så lärde jag mig en hel del av det, även om jag inte lyckades hitta hela lösningen själv - magkänslan var i alla fall rätt att det skulle kunna hanteras med bits även om jag inte hade rätt terminologi i huvudet när jag rubber-duckade till README'n.  
+
+Vi ska se vad del 2 erbjuder...  
+
+#### Del 2  
