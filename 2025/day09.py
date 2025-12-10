@@ -32,7 +32,23 @@ class Edge:
         return f"Edge({self.x1},{self.y1}, {self.x2},{self.y2})"
 
 
-def get_pairs_with_distances(coordinates):
+def setup(path="testinput_day09.dat") -> list[Coordinate]:
+    """
+    Parses input and returns a list of coordinates
+    Example: [(1,2),(2,3),(0,8)]
+           
+    """
+    input = []
+    with open(path, "r") as f:
+        for row in f:
+            (x, y) = list(map(int, [x for x in row.strip().split(",")]))
+            
+
+            input.append(Coordinate(x,y))
+    return input
+
+
+def get_pairs_with_distances(coordinates: list[Coordinate]) -> list[(int,int,int)]:
     """
         Takes a list of Coordinate and calculates distances between pairs.
         Returns a list representing (Distance, Coord x, Coord y)
@@ -49,7 +65,7 @@ def get_pairs_with_distances(coordinates):
 
     return pairs
 
-def get_pairs_with_area(coordinates):
+def get_pairs_with_area(coordinates: list[Coordinate]):
     """
         Takes a list of Coordinate and calculates area of a rectangle between those two corners.
         Returns a list representing (Distance, Coord x, Coord y)
@@ -73,22 +89,8 @@ def get_area(c1,c2):
     """
     return (abs(c1.x - c2.x) + 1) * (abs(c1.y - c2.y) + 1)
 
-def setup(path="testinput_day09.dat"):
-    """
-    Parses input and returns a list of coordinates
-    Example: [(1,2),(2,3),(0,8)]
-           
-    """
-    input = []
-    with open(path, "r") as f:
-        for row in f:
-            (x, y) = list(map(int, [x for x in row.strip().split(",")]))
-            
 
-            input.append(Coordinate(x,y))
-    return input
-
-def get_edges(coordinate_list):
+def get_edges(coordinate_list: list[Coordinate]):
     """
     Takes in a list of Coordinate and joins them together as edges
     Returns a list of Edge
@@ -205,19 +207,25 @@ if __name__ == "__main__":
     coordinates = setup("input_day09.dat")
     
     #print(coordinates)
-    p1_pairs = get_pairs_with_area(coordinates)
+    pairs = get_pairs_with_area(coordinates)
     #p1_max_area = 0
     #for (pair_distance,i,j) in p1_pairs:
     #    
     #    area = get_area(coordinates[i], coordinates[j])
     #    print(area,coordinates[i], coordinates[j])
     #    p1_max_area = max(area,p1_max_area)
-    p1_max_area, _, _ = p1_pairs[0]
+    p1_max_area, _, _ = pairs[0]
 
 
     print("Part 1:", p1_max_area)
 
     # For part 2 we need to get the edges
     edges = get_edges(coordinates)
-    #print(edges)
+    p2_max_area = 0
+    for (area, c1, c2) in pairs:
+        if rectangle_inside_polygon(coordinates[c1], coordinates[c2], edges):
+            p2_max_area = area
+            break
+    
+    print("Part 2:", p2_max_area)
     

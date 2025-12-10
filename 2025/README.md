@@ -165,4 +165,8 @@ Först tänker jag nåt slags fill - med gränspunkter att hålla sig inom, men 
 Just nu funderar jag på att lagra alla punkter i "ytterkanterna" av ytan, och sen använda det som gränser när jag kollar rektanglar på samma sätt som i del 1 - men bara räkna rektanglarna som befinner sig innanför gränserna.  
 Jag misstänker dock att den riktiga inputen kommer att generera för många punkter eller nåt sånt, så att det blir "ogörligt" att hantera. Men vi får se. Man måste börja nånstans, och än är jag inte redo att fråga AI om hjälp :D  
 Jag testar att bygga en lista med alla "edges" till att börja med i alla fall.  
-
+Som tilllägg till det blev det en funktion som tar fram hörnen på en rektangel - xmax, xmin, ymax, ymin.  
+Sen blev det svårt som fan. Jag insåg att jag inte skulle kunna kolla varje punkt i varje rektangel, mot varje punkt i "ytan" - det skulle bli så in i helskotta många kombinationer att universum hinner upphöra existera innan det räknats klart.  
+Jag googlade runt på diverse dåliga sökuttryck, innan jag slutligen gav upp och frågade ChatGPT om vilken typ av problem det är jag försöker lösa. Jag har ett projekt i ChatGPT där den fått instruktioner att inte ge mig lösningar utan att bolla om problembeskrivningar och hjälpa till att peta mig åt rätt håll för att förstå problemet och hitta möjliga angreppsvinklar.  
+Här tog det en god stund för mig att förstå, och det hjälpte inte helt ändå - för nu snackar vi geometri och beräkningar på en nivå som jag aldrig gjort innan. Att kolla om en punkt befinner sig inuti en polygon (min "yta") och sen avgöra om en rektangel helt befinner sig innanför ytan med hjälp av att kolla skärningspunkter - var något som jag till sist fick be om hjälp med att förstå hur man skriver funktioner för.  
+Så tack ChatGPT för de två funktioner som hjälpte mig med geometrin, samt coachningen att förstå hur de hänger ihop tillräckligt väl för att jag skulle kunna bygga logiken för del 2. :D  
