@@ -1,7 +1,7 @@
 from pathlib import Path
 import pytest
 
-from day09 import setup
+from day09 import setup, Coordinate, get_pairs_with_distances, get_area
 
 
 def parse_testdata(path="testinput_day09.dat"):
@@ -22,7 +22,20 @@ def parse_testdata(path="testinput_day09.dat"):
     ])
 def test_parse(index,expected_x, expected_y):
     coords = parse_testdata()
-    (x,y) = coords[index]
-    assert x == expected_x
-    assert y == expected_y
-    
+    coordinate = coords[index]
+    assert coordinate.x == expected_x
+    assert coordinate.y == expected_y
+
+def test_get_area():
+    expected = 50
+    c1 = Coordinate(11,1)
+    c2 = Coordinate(2,5)
+    result = get_area(c1,c2)
+    assert result == expected
+
+    expected = 18
+    c1 = Coordinate(7,1)
+    c2 = Coordinate(2,3)
+    result = get_area(c1,c2)
+    assert result == expected
+
