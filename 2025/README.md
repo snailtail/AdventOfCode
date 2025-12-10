@@ -145,3 +145,13 @@ En twist - som vanligt på del 1.
 Joina ihop alla par och håll koll på de två sista som kopplades ihop med något, vilka är det?
 Multiplicera sedan deras X koordinater med varandra.  
 Här var jag tvungen att förlita mig på ChatGPT för att reda ut problemet och hitta rätt algoritm - jag snurrade ner mig långt ner i källaren med problembeskrivningen och förstod fel ganska länge.  
+
+
+### Dag 9: Movie Theater  
+
+#### Del 1  
+
+Hitta motsatta "hörn" som bildar rektanglar (kan vara en rak linje också), och kolla vilken den största möjliga arean som någon av dessa rektanglar täcker.  
+Egentligen inget knepigt här, finns säkert nåt mer effektivt sätt att lösa det på men jag körde på att göra alla möjliga par, och jag använde mig av "manhattan distance" mellan punkterna för att avgöra vilka punkter som var längst ifrån varandra.  
+Sen insåg jag att det inte nödvändigtvis bildade den största rektangeln, utan att det defacto var själva area-beräkningen till syvende och sist som avgjorde - och därför körde jag den på samtliga par, och sen valde jag bara ut max area från den beräkningen.  
+
