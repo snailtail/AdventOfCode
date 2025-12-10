@@ -196,3 +196,21 @@ Men å andra sidan så lärde jag mig en hel del av det, även om jag inte lycka
 Vi ska se vad del 2 erbjuder...  
 
 #### Del 2  
+
+Åh helvete... Nu är det inte binärt längre, lampor på eller av. Nu är det joltages värdena som representerar counters som ska nå de specifika joltage värdena. 
+På något vis känns detta som ett såntdär problem där jag naturligt hamnar i nån dålig algoritm som resulterar i sju kvintiljoner beräkningar, och äter sju hundra terabyte RAM. :D  
+Jag har redan "fuskat" och frågat AI om steg 1, jag bollar lite om mina tankar att detta ändå är likt del 1, fast istället för binärt resultat så har vi nu counters på varje position som i vissa fall ska upp i och över hundratalen värdemässigt. 
+
+Jaha, ChatGPT pratar om BFS, och deltavärden för knapparna. Vi testar. Vi lagrar joltages som en tuple, och för varje knapp lagrar vi en motsvarande delta-tuple som visar vilka counters som knappen påverkar knapp=(1,3) => delta=(0,1,0,1) om vi har 4 joltage counters.  
+Än så länge är jag med i matchen hur det skulle funka. Vad jag har svårt att greppa är hur vi ska mäkta med att testa kombinationer och hitta den "bästa" - utan att testa i evighetens evighet.  
+Okej, jag läste på mer runt BFS metodiken och jag hade ju fattat lite fel. Angreppsvinkeln med den blir att testa kombinationer i ordning efter antal knapptryck tills man första gången når target state. Då vet man att man har minsta möjliga. Så BFS kommer dra igenom först alla varianter där man bara trycker ner en av knapparna. Sen alla varianter där man trycker ner två av knapparna. Vi använder en kö som lagring för knapptrycken vi gör, och på så sätt testar vi kombinationerna tillsammans i "lager".  
+
+Nu har jag testkört detta och med testinputen funkar det. Däremot blir det jobbigt redan på första maskinen i den riktiga inputen. Den har ju 8 st "räknare" i Joltage-sektionen, och värden upp till 250 på flera av dem, samt 8 "knappar" att trycka på.  
+Efter ett par minuters körning på första "riktiga" maskinen så äter python 4 gigabytes av mitt arbetsminne, och den visar inga tecken på att lugna ner sig :D
+Jag antar att det kanske hade gått att testa att sprida ut detta på multipla kärnor och processa parallellt, men jag tror inte brute strength är vägen fram ändå. Det känns lite som att försöka putta på alperna, även om jag kallar in 7 kompisar till som puttar så är det en otroligt oöverstiglig uppgift. :D. 
+
+Jag får kolla om jag hittar en smartare lösning. Problemet med den är antagligen att jag inte kommer förstå matematiken bakom.  
+Men jag kan ju be codex om en lösning om inte annat, nu vet jag ju vad som inte fungerar, och vad som fungerar en bit.  
+Vi får se, jag laborerar på.  
+
+*AI-hjälp för del 2:* Dokumentation av den AI-framtagna lösningen finns i `codex_explains_day10.md`. Jag (den här författaren) löste inte den delen själv.
