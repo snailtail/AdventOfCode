@@ -5,6 +5,7 @@ Day 10: Reactor
 
 
 from collections import deque
+from functools import lru_cache
 
 
 class ServerRack:
@@ -38,23 +39,46 @@ class ServerRack:
                 adj_index = self.servers.index(adj_id)
                 self.cable_matrix[vertice_index][adj_index]=1
     
+    
+    def neighbors(self, node: str) -> list[str]:
+        idx = self.servers.index(node)
+        result = []
+        row = self.cable_matrix[idx]
+        for i, has_edge in enumerate(row):
+            if has_edge:
+                result.append(self.servers[i])
+        return result
+
+    @lru_cache(maxsize=None)
+    def dfs_part2(self, node: str, seen_dac: bool, seen_fft: bool, end_node: str) -> int:
+        if node == "dac":
+            seen_dac = True
+        if node == "fft":
+            seen_fft = True
+
+        if node == end_node:
+            return 1 if (seen_dac and seen_fft) else 0
+
+        total = 0
+        for nxt in self.neighbors(node):
+            total += self.dfs_part2(nxt, seen_dac, seen_fft, end_node)
+        return total
+
+    def get_path_count_part2(self, start_node="svr", end_node="out") -> int:
+        self.dfs_part2.cache_clear()
+        return self.dfs_part2(start_node, False, False, end_node)
 
     def get_path_count(self,starting_node: str, end_node='out') -> int:
         work = deque()
         work.append(starting_node)
         paths_to_end_node_counter = 0
         while work:
-            current_node=work.pop()
-
-            if current_node == end_node:
+            current_node = work.pop()
+            if current_node == end_node:     
                 paths_to_end_node_counter += 1
-            
-            current_node_index = self.servers.index(current_node) # we need the index to dip inside the cable matrix (adjacency matrix)
-            for i in range(len(self.servers)):
-                # if there is an edge to the i:th server/node there will be a 1 in the "column" i
-                if self.cable_matrix[current_node_index][i]==1:
-                    adj_node = self.servers[i] # get the str from the servers
-                    work.append(adj_node) # add the adjacent node/server to the work stack
+
+            for adj_node in self.neighbors(current_node):
+                work.append(adj_node) # add the adjacent node/server to the work stack
 
         return paths_to_end_node_counter
 
@@ -79,8 +103,12 @@ def print_matrix(vertices:list[str], adj_matrix:list[list[int]]):
             print("  |  ".join(map(str,adj_matrix[i])))
 
 if __name__ == "__main__":
-    rack = setup("testinput_day11.dat")
-    p1_count = rack.get_path_count('you','out')
+    rack_p1 = setup("input_day11.dat")
+    p1_count = rack_p1.get_path_count('you','out')
     print("Part 1:", p1_count)
+    #rack_p2 = setup("testinput_day11_p2.dat")
+    rack_p2 = setup("input_day11.dat")
+    p2_count = rack_p2.get_path_count_part2('svr','out')
+    print("Part 2:", p2_count)
 
     

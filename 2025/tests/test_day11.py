@@ -4,7 +4,7 @@ import pytest
 
 
 
-def parse_testdata(path="testinput_day11.dat"):
+def parse_testdata(path="testinput_day11_p1.dat"):
     base_path = Path(__file__).parent.parent
     rack = setup(base_path / path)
     return rack
@@ -53,3 +53,7 @@ def test_setup_and_parse_adjacency_matrix(index, expected_values):
 def test_path_traversal_p1():
     rack = parse_testdata()
     assert rack.get_path_count('you','out') == 5
+
+def test_path_traversal_p2():
+    rack = parse_testdata("testinput_day11_p2.dat")
+    assert rack.get_path_count_part2('svr','out') == 2
