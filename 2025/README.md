@@ -214,3 +214,38 @@ Men jag kan ju be codex om en lösning om inte annat, nu vet jag ju vad som inte
 Vi får se, jag laborerar på.  
 
 *AI-hjälp för del 2:* Dokumentation av den AI-framtagna lösningen finns i `codex_explains_day10.md`. Jag (den här författaren) löste inte den delen själv.
+
+### Dag 11: Reactor  
+
+#### Del 1  
+
+Jahaja, ett grafproblem. Vilken tur, det är jag ganska kass på - så då får jag chansen att öva.  
+Jag tolkar att jag ska parse:a input:en och bygga en riktad graf där man bara kan röra sig åt ett håll. Och sen ska jag räkna alla möjliga vägar från "you" till "out".  
+Här luktar det jättemycket DFS eller BFS
+
+Börjat med att parse:a input:en till en `list[str]` som representerar vertices, och en `list[list[int]]` som är adjacency_matrix för dem. Alla edges får en weight av 1 eftersom det inte nämns några kostnader eller så. Och grafen är enkelriktad.  
+
+Jag skapar en klass för ServerRack som får ta emot och göra parseingen och hålla matrisen (kablagen) och servrarna (vertices)  
+
+Efter lite youtubande på kvällskvisten så verkar det mest rimliga vara DFS för att traversera grafen. Jag försöker väl bygga nåt sånt helt enkelt, jag tror jag vill ha det som en metod på ServerRack klassen. Jag börjar så i alla fall.  
+
+Okej, gött. Jag kollade lite på DFS på youtube och använde deque() (Double Ended Queue) som stack, och sen var det egentligen bara att köra på, starta på startnoden. pusha in alla adjacent nodes till stacken (med hjälp av adjacency matrixen), varje gång vi poppat den nod som är "slutnoden" så ökar vi räknaren för det med 1 - då har vi nått fram.
+Jag var på väg att stoppa in ett set för att hålla reda på "besökta noder" men glömde lite bort den när mina testkörningar visade att jag fick ett OK resultat med testinputen. Tur var väl det, för det hade ju effektivt dödat hela grejen med att räkna alla _möjliga_ vägar. Då hade jag fått första bästa bara.  
+
+Nu kan jag ju bara bäva inför vad del 2 ska innebära såhär näst sista dagen... :D. 
+
+#### Del 2  
+Oj, först kändes det jätteenkelt - bara att hålla koll på "visited" och se om den innehåller dac och fft när man når slutnoden - och sen rensa visited.  
+MEN - eftersom DFS funkar som den gör så kollar man ju inte hela paths varje gång, så man kommer inte återbesöka dac och fft noderna igen om de har lett fram till slutnoden.  
+När jag insåg det blev jag först förtvivlad en stund, sen började jag fundera på om man inte ändå kunde hålla koll på "vid sidan av" ifall man hade sett dac och fft för vägen fram till den noden man testar.  
+Det tog lite klurande, men genom att lägga till varsin bool för det i stacken, tillsammans med noden så var det ju ganska enkelt egentligen.  
+
+Eller det var villfarelsen jag levde i ända tills jag faktiskt körde mot den riktiga inputen med start från svr. Det visade sig vara en pandoras ask. Den funkar inget vidare med min lösning för del 1 heller - det är något som gör att det blir så otroligt många vägar att det inte går klart helt enkelt. Jag kollar lite på hur man kan effektivisera detta - något tips var att byta till adjacency list, och att lägga till memoization. Det låter ju inte ogörligt.  
+
+Eh ja jo, visst - men alla pekade på lru_cache från paketet func_tools för att göra den bästa memoization:en och då var nästan alla exempel baserade på rekursion.  
+Så det jag gjorde var att jag återställde min metod som löste del 1 till ursprungsskicket, och skapade en ny metod specifikt för del 2. I den petade jag in en rekursiv funktion för dfs specifikt för del 2, och en "count" metod som kickar igång den rekursiva funktionen.
+Med hjälp av lru_cache gick det från ohyggligt lång tid till millisekunder.. Sjukt!  
+Iofs förståeligt att det tog tid utan lru_cache, det korrekta svaret var ett tal runt 500 biljoner. Och det är ju då inte alla möjliga vägar, utan endast de där man passerat dac och fft på vägen. :-O. 
+
+En snabb justering av koden så att vi räknar alla paths från svr till out med min riktiga input gav svaret: 180 598 300 197 967 830, alltså runt 180 BILJARDER paths. Jag hajjar. Inte riktigt läge att räkna alla fullt ut då nej. :D  
+Glad att jag tog mig igenom dagen helt utan hjälp av AI. Men med kraftigt nyttjande av youtube och google för DFS och Graph teori.   
