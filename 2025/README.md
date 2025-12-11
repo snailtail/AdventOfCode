@@ -215,11 +215,13 @@ Vi får se, jag laborerar på.
 
 *AI-hjälp för del 2:* Dokumentation av den AI-framtagna lösningen finns i `codex_explains_day10.md`. Jag (den här författaren) löste inte den delen själv.
 
-
 ### Dag 11: Reactor  
 
-### Del 1  
+#### Del 1  
 
 Jahaja, ett grafproblem. Vilken tur, det är jag ganska kass på - så då får jag chansen att öva.  
 Jag tolkar att jag ska parse:a input:en och bygga en riktad graf där man bara kan röra sig åt ett håll. Och sen ska jag räkna alla möjliga vägar från "you" till "out".  
 Här luktar det jättemycket DFS eller BFS
+
+Börjat med att parse:a input:en till en `list[str]` som representerar vertices, och en `list[list[int]]` som är adjacency_matrix för dem. Alla edges får en weight av 1 eftersom det inte nämns några kostnader eller så. Och grafen är enkelriktad.  
+
