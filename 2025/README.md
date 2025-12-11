@@ -225,3 +225,4 @@ Här luktar det jättemycket DFS eller BFS
 
 Börjat med att parse:a input:en till en `list[str]` som representerar vertices, och en `list[list[int]]` som är adjacency_matrix för dem. Alla edges får en weight av 1 eftersom det inte nämns några kostnader eller så. Och grafen är enkelriktad.  
 
+Jag skapar en klass för ServerRack som får ta emot och göra parseingen och hålla matrisen (kablagen) och servrarna (vertices)  

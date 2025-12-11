@@ -6,8 +6,8 @@ import pytest
 
 def parse_testdata(path="testinput_day11.dat"):
     base_path = Path(__file__).parent.parent
-    vertices,adj_matrix = setup(base_path / path)
-    return (vertices,adj_matrix)
+    rack = setup(base_path / path)
+    return rack
 
 @pytest.mark.parametrize(
         "index,expected_id",
@@ -26,8 +26,8 @@ def parse_testdata(path="testinput_day11.dat"):
         ],
 )
 def test_setup_and_parse_vertices(index,expected_id):
-    v,_ = parse_testdata()
-    assert v[index] == expected_id
+    rack = parse_testdata()
+    assert rack.servers[index] == expected_id
 
 
 @pytest.mark.parametrize(
@@ -47,5 +47,5 @@ def test_setup_and_parse_vertices(index,expected_id):
         ],
 )
 def test_setup_and_parse_adjacency_matrix(index, expected_values):
-    _, m = parse_testdata()
-    assert m[index] == expected_values
+    rack = parse_testdata()
+    assert rack.cable_matrix[index] == expected_values
