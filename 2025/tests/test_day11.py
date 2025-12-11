@@ -49,3 +49,7 @@ def test_setup_and_parse_vertices(index,expected_id):
 def test_setup_and_parse_adjacency_matrix(index, expected_values):
     rack = parse_testdata()
     assert rack.cable_matrix[index] == expected_values
+
+def test_path_traversal_p1():
+    rack = parse_testdata()
+    assert rack.get_path_count('you','out') == 5

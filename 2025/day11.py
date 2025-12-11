@@ -4,6 +4,9 @@ Day 10: Reactor
 
 
 
+from collections import deque
+
+
 class ServerRack:
     def __init__(self,input: list[str]):
         self.servers = []
@@ -34,8 +37,26 @@ class ServerRack:
                 # find the index for the vertice which vertice_id is adjacent to
                 adj_index = self.servers.index(adj_id)
                 self.cable_matrix[vertice_index][adj_index]=1
-        
+    
 
+    def get_path_count(self,starting_node: str, end_node='out') -> int:
+        work = deque()
+        work.append(starting_node)
+        paths_to_end_node_counter = 0
+        while work:
+            current_node=work.pop()
+
+            if current_node == end_node:
+                paths_to_end_node_counter += 1
+            
+            current_node_index = self.servers.index(current_node) # we need the index to dip inside the cable matrix (adjacency matrix)
+            for i in range(len(self.servers)):
+                # if there is an edge to the i:th server/node there will be a 1 in the "column" i
+                if self.cable_matrix[current_node_index][i]==1:
+                    adj_node = self.servers[i] # get the str from the servers
+                    work.append(adj_node) # add the adjacent node/server to the work stack
+
+        return paths_to_end_node_counter
 
 
 def setup(path="testinput_day11.dat") -> ServerRack:
@@ -59,5 +80,7 @@ def print_matrix(vertices:list[str], adj_matrix:list[list[int]]):
 
 if __name__ == "__main__":
     rack = setup("testinput_day11.dat")
-    print_matrix(rack.servers,rack.cable_matrix)
+    p1_count = rack.get_path_count('you','out')
+    print("Part 1:", p1_count)
+
     

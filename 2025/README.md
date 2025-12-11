@@ -226,3 +226,12 @@ Här luktar det jättemycket DFS eller BFS
 Börjat med att parse:a input:en till en `list[str]` som representerar vertices, och en `list[list[int]]` som är adjacency_matrix för dem. Alla edges får en weight av 1 eftersom det inte nämns några kostnader eller så. Och grafen är enkelriktad.  
 
 Jag skapar en klass för ServerRack som får ta emot och göra parseingen och hålla matrisen (kablagen) och servrarna (vertices)  
+
+Efter lite youtubande på kvällskvisten så verkar det mest rimliga vara DFS för att traversera grafen. Jag försöker väl bygga nåt sånt helt enkelt, jag tror jag vill ha det som en metod på ServerRack klassen. Jag börjar så i alla fall.  
+
+Okej, gött. Jag kollade lite på DFS på youtube och använde deque() (Double Ended Queue) som stack, och sen var det egentligen bara att köra på, starta på startnoden. pusha in alla adjacent nodes till stacken (med hjälp av adjacency matrixen), varje gång vi poppat den nod som är "slutnoden" så ökar vi räknaren för det med 1 - då har vi nått fram.
+Jag var på väg att stoppa in ett set för att hålla reda på "besökta noder" men glömde lite bort den när mina testkörningar visade att jag fick ett OK resultat med testinputen. Tur var väl det, för det hade ju effektivt dödat hela grejen med att räkna alla _möjliga_ vägar. Då hade jag fått första bästa bara.  
+
+Nu kan jag ju bara bäva inför vad del 2 ska innebära såhär näst sista dagen... :D. 
+
+#### Del 2  
