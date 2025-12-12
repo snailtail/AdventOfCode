@@ -261,3 +261,49 @@ Men att göra det och försöka passa in flera "former" på en grid. Nja, här k
 Jag ska ta morgonkaffet och se om jag kan få nån slags magkänsla för hur man kunde lösa någon del av det. Ibland ger sig nästa pusselbit när man fått lite momentum.  
 
 Jag tar kaffet nu och börjar med att försöka parse:a inputen till listor av PresentShape respektive TreeRegion. Sen får vi se vad de ska innehålla - där lär man väl få skruva. Jag funderar på bitmasker för PresentShape - med alla upp till 8 varianter av rotationer + flip. Men vissa kommer se likadana ut så man kan nog deduplicera dem lite.  
+
+Okej, att fixa bitmask av originalformen var inte så svårt. Men att rotera koordinater fick jag ta hjälp med logiken / matematiken för. Det var mycket hålla tungan rätt i mun där.  
+Men tack vare idogt pusslande och testande så hittade jag till sist ett sätt (oklart om det håller måttet) att parse:a inputen och få lagra alla olika varianter av roterad och flippad+roterad bitmask som representerar koordinaterna där # finns.  
+
+Nu ska jag fundera en stund på vad jag behöver i TreeRegion förutom dess storlek, och krav på antal shapes av olika id'n.  
+Jag vill nog ha funktionaliteten att testa om antal shapes som ryms motsvarar kraven här.  
+
+Sådär, då var TreeRegion på plats någotsånär - med två snabba funktioner som direkt kan avgöra om:  
+
+1. Alla nödvändiga shapes ryms oavsett sin shape - dvs kolla om antalet shapes ryms även om de skulle ta upp hela 3x3 rutorna alltid. Om så är fallet behöver vi inte kolla och pussla med varianterna - i så fall ryms de hur vi än vrider dem. Då kan vi säga True direkt här.
+1. De nödvändiga shapes totala area är större än den tillgängliga ytan - i så fall kan vi aldrig pussla ihop dem på ett sätt så de ryms ändå - då kan vi säga False direkt här.
+
+Nu kvarstår bara att räkna ut om jag kan räkna ut hur man pusslar med bitar när 1:an failar ovan.  
+I'll have to google this.  
+Mer troligt behöver jag bolla med AI om detta.
+
+Okej, nu har jag ärligt tappat hakan fullständigt.  
+Jag har suttit och pillat med det här jättelänge nu, och funderat på hur man gör alla jämförelser med masker hit och rader dit.  
+Sen tröttnade jag lite på det och tänkte att jag så länge kan kolla lite statistik - så jag vet hur stor andel av "TreeRegions" som jag behöver göra såna här beräkningar på.  
+Då visar det sig att (med min riktiga input) av 1000 regioner så är 501 st direktkvalificerade pga att bitarna ryms oavsett hur man vrider eller speglar dem, och 499 st är direktdiskvalificerade pga att deras totala area är för liten att rymma alla bitarna oavsett placering/spegling/vridning.  
+
+Jag fattade inte vad jag såg först, men när jag tittade på det igen lite senare, och dubbel- och trippelkollat så har jag ju fått svaret för samtliga 1000 regioner där. Det behövdes ingen mer beräkning i del 1.  
+Jag körde in svaret och det var korrekt..  
+Jag är i nåt slags chock. :D
+
+Så test-input:en krävde mer logik för där kunde man inte avgöra alla regionerna baserat bara på quick-funktionerna. Men med den riktiga inputen kunde man det...  
+Det kanske var en läxa i sig :D.  
+Utgå inte från att du behöver bygga funktionalitet baserat på testinputen för att lösa den riktiga.  
+Testa då och då med den riktiga inputen också för att se var du står.  
+
+Okej, vidare mot del 2.
+
+#### Del 2  
+
+Eh, okej - det fanns ingen del 2.  
+I beskrivningen för del 2 framgick bara att tomtenissarna kom och monterade en stor julgran, och att de tryckte dit en stor stjärna i toppen av granen - jag antar att den stjärnan är den 2:a stjärnan för dagen för jag ser att jag fått två stycken.  
+Sjukt kul, men sjukt oväntat.  
+Jag hade inte trott att jag skulle orka mig igenom parse av inputen ens idag.  
+Men med hjälp av att bolla med AI om hur man roterar koordinater - och lite hjälp att tänka ut hur man representerar en 3x3 shape som en bitmask.  
+Det lustiga i kråksången var att man aldrig behövde använda rotationen eller spegelvändandet.  
+Det enda som användes i slutändan var arean för shapes.  
+Hade jag testat det i ett tidigt skede hade jag ju kunnat undvika minst två timmars arbete... :D
+
+Men men, å andra sidan trodde jag som sagt inte ens att jag skulle göra ett försök med dagen så.  
+
+God jul då! Och tack för i år Advent of Code!  
