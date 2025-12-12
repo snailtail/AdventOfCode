@@ -249,3 +249,15 @@ Iofs förståeligt att det tog tid utan lru_cache, det korrekta svaret var ett t
 
 En snabb justering av koden så att vi räknar alla paths från svr till out med min riktiga input gav svaret: 180 598 300 197 967 830, alltså runt 180 BILJARDER paths. Jag hajjar. Inte riktigt läge att räkna alla fullt ut då nej. :D  
 Glad att jag tog mig igenom dagen helt utan hjälp av AI. Men med kraftigt nyttjande av youtube och google för DFS och Graph teori.   
+
+
+### Dag 12: Christmas Tree Farm  
+
+#### Del 1  
+
+Å fy tusan... rotera matriser och passa in "former" i en grid.  
+Spontana reaktionen är att det här klarar jag aldrig. Rotera matriser i sig känns nog besvärligt.  
+Men att göra det och försöka passa in flera "former" på en grid. Nja, här kanske jag får vika ner mig innan jag ens försökt.  
+Jag ska ta morgonkaffet och se om jag kan få nån slags magkänsla för hur man kunde lösa någon del av det. Ibland ger sig nästa pusselbit när man fått lite momentum.  
+
+Jag tar kaffet nu och börjar med att försöka parse:a inputen till listor av PresentShape respektive TreeRegion. Sen får vi se vad de ska innehålla - där lär man väl få skruva. Jag funderar på bitmasker för PresentShape - med alla upp till 8 varianter av rotationer + flip. Men vissa kommer se likadana ut så man kan nog deduplicera dem lite.  
