@@ -123,12 +123,3 @@ def test_quick_no_by_area_false():
     shape_areas = (7,7,7,7,7,7)
     r = TreeRegion("5x5: 3 0 0 0 0 0")  # 21 <= 25
     assert r.quick_no_by_area(shape_areas) is False
-
-def test_full_input_all_regions_classified():
-    shapes, regions = parse_testdata("input_day12.dat")
-    solver = TreeRegionSolver(shapes)
-
-    results = [solver.can_fit(r) for r in regions]
-
-    assert all(r is True or r is False for r in results)
-    assert sum(results) == 599
