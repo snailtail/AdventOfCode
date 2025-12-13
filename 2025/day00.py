@@ -1,4 +1,5 @@
 """Minimal Day 00 scaffold to show structure and test hooks."""
+
 from pathlib import Path
 
 

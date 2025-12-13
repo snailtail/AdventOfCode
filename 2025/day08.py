@@ -3,7 +3,6 @@ Day 8: Playground
 """
 
 import math
-import pprint
 
 
 class DisjointSet:
@@ -119,9 +118,9 @@ def part2(coordinates, pairs):
     last_a = last_b = None
 
     for dist, i, j in pairs:
-        if ds.union(i, j):          # bara om en verklig sammanslagning sker
+        if ds.union(i, j):  # bara om en verklig sammanslagning sker
             component_count -= 1
-            last_a, last_b = i, j   # den senaste kopplingen som gjorde skillnad
+            last_a, last_b = i, j  # den senaste kopplingen som gjorde skillnad
             if component_count == 1:
                 break
 
@@ -130,15 +129,13 @@ def part2(coordinates, pairs):
     return x1 * x2
 
 
-
 if __name__ == "__main__":
     coordinates = setup("testinput_day08.dat")
     pairs = get_pairs_with_distances(coordinates)
 
     p1 = part1(pairs, 20, 10)  # for test input
-    #p1 = part1(pairs,1000,1000) # for prod input
+    # p1 = part1(pairs,1000,1000) # for prod input
     print("Part 1:", p1)
 
-    
-    p2 = part2(coordinates,pairs)  # for test input
+    p2 = part2(coordinates, pairs)  # for test input
     print("Part2:", p2)

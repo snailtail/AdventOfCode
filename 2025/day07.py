@@ -35,9 +35,9 @@ def setup(path="testinput_day07.dat"):
 
 def get_start_position(grid):
     """
-       Takes in a 2-dimensional grid and returns the position for the 'S' marking the starting position
-       In this case we just assume the start is on row 0
-       Returns: Tuple with index: (row,col)
+    Takes in a 2-dimensional grid and returns the position for the 'S' marking the starting position
+    In this case we just assume the start is on row 0
+    Returns: Tuple with index: (row,col)
     """
     start_index = grid[0].index("S")
     return (0, start_index)
@@ -45,19 +45,20 @@ def get_start_position(grid):
 
 def get_splitter_indexes(grid, row):
     """
-        Just an easy way to find grid positions for "splitters"
-        Returns: Set of column indexes for the current row where "splitters" are found
+    Just an easy way to find grid positions for "splitters"
+    Returns: Set of column indexes for the current row where "splitters" are found
     """
     splitter_indexes = set()
     for pos, v in enumerate(grid[row]):
-        if v == '^':
+        if v == "^":
             splitter_indexes.add(pos)
 
     return splitter_indexes
 
+
 def part1(grid):
     grid_width = len(grid[0])
-    (s_row,s_col) = get_start_position(grid)
+    (s_row, s_col) = get_start_position(grid)
     beams = set()
     beams.add(s_col)
     cur_row = s_row + 1
@@ -69,46 +70,48 @@ def part1(grid):
         # med två nya på c-1 och c+1 jämfört med ^)
         updated_beams = set()
         for beam in beams:
-            splitters = get_splitter_indexes(grid,cur_row)
+            splitters = get_splitter_indexes(grid, cur_row)
             if beam in splitters:
                 split_count += 1
                 newbeam_left = beam - 1
                 newbeam_right = beam + 1
-                if newbeam_left >=0:
-                    updated_beams.add(newbeam_left) # add index to left
+                if newbeam_left >= 0:
+                    updated_beams.add(newbeam_left)  # add index to left
                 if newbeam_right < grid_width:
-                    updated_beams.add(beam+1) # add index to right
+                    updated_beams.add(beam + 1)  # add index to right
             else:
                 # add back in the original beam
                 updated_beams.add(beam)
         beams = updated_beams
-        cur_row +=1
+        cur_row += 1
     return split_count
 
 
 def part2(grid):
     """
-        Counts number of ways one tachyon particle will take via the quantum tachyon manifolds (splitters)
-        Returns the total count of these ways
+    Counts number of ways one tachyon particle will take via the quantum tachyon manifolds (splitters)
+    Returns the total count of these ways
     """
     # Håll en grid med antal gånger man kommer hamna i den cellen
     # för varje rad, kolla cellerna på kolumn-index där antal inkommande vägar uppifrån är större än 0
     # varje gång man stöter på en splitter ska man ta inkommande antal från raden ovan, och plussa på det på nuvarande rad fast vid col-1 och col+1 jämfört med splittern
     # om man inte stöter på en splitter så ska det inkommande värdet plussas på i nuvarande kolumnindex bara.
-    # lite koll på att man befinner sig innanför gridden osv. 
+    # lite koll på att man befinner sig innanför gridden osv.
     # sen är det bara att summera antalet vägar på sista raden - det blir totala antalet kombinationer
 
-    (s_row,s_col) = get_start_position(grid)
+    (s_row, s_col) = get_start_position(grid)
     grid_width = len(grid[0])
     grid_height = len(grid)
-    ways = [[0 for x in range(grid_width)] for y in range(grid_height)] # här håller vi "räkningen" på hur många gånger en stråle kan passera en viss grid (tror jag)
-    ways[s_row][s_col]=1 # 
+    ways = [
+        [0 for x in range(grid_width)] for y in range(grid_height)
+    ]  # här håller vi "räkningen" på hur många gånger en stråle kan passera en viss grid (tror jag)
+    ways[s_row][s_col] = 1  #
     cur_row = s_row + 1
     while cur_row < grid_height:
-        splitter_indexes = get_splitter_indexes(grid,cur_row)
+        splitter_indexes = get_splitter_indexes(grid, cur_row)
         for cur_col in range(grid_width):
             # kolla vad som kommer ovanifrån
-            incoming = ways[cur_row-1][cur_col]
+            incoming = ways[cur_row - 1][cur_col]
             if incoming == 0:
                 # om inga inkommande strålar/vägar hoppar vi över den här cellen.
                 continue
@@ -121,13 +124,14 @@ def part2(grid):
                     ways[cur_row][lvalue] += incoming
                 if rvalue < grid_width:
                     ways[cur_row][rvalue] += incoming
-            elif ways[cur_row-1][cur_col]>0:
+            elif ways[cur_row - 1][cur_col] > 0:
                 ways[cur_row][cur_col] += incoming
         cur_row += 1
 
     # och när vi är färdiga så borde totala antalet vägar bli summan av "sista raden"
     total_ways = sum(ways[-1])
     return total_ways
+
 
 if __name__ == "__main__":
     data = setup("testinput_day07.dat")
