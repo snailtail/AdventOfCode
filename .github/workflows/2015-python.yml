@@ -1,4 +1,4 @@
-name: 2025 Python Tests
+name: 2015 Python Tests
 
 on:
   push:
