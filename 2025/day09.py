@@ -118,6 +118,11 @@ def get_rect_from_coords(c1: Coordinate, c2: Coordinate):
 
 
 def point_in_polygon(px: float, py: float, edges: list[Edge]) -> bool:
+    """
+        Checks if a point is inside of a polygon, receives a point and a list of edges.
+        Returns Bool
+        Author: ChatGPT
+    """
     # På-kanten → "inne"
     for e in edges:
         # vertikal kant
@@ -150,19 +155,19 @@ def point_in_polygon(px: float, py: float, edges: list[Edge]) -> bool:
 
     return inside
 def edge_intersects_rect_interior(edge: Edge, xmin: int, xmax: int, ymin: int, ymax: int) -> bool:
-    # Vertikal kant x = konstant
+    # Vertical edge, x = constant
     if edge.x1 == edge.x2:
         x = edge.x1
         y1, y2 = sorted((edge.y1, edge.y2))
 
-        # Om kanten ligger strikt inne i x-intervallet
+        # If edge is strictly inside the x interval
         if xmin < x < xmax:
-            # Överlapp i y med rektangelns inre?
+            # Overlap y w recangle insides?
             if max(y1, ymin) < min(y2, ymax):
                 return True
         return False
 
-    # Horisontell kant y = konstant
+    # Horizontal edge, y = constant
     if edge.y1 == edge.y2:
         y = edge.y1
         x1, x2 = sorted((edge.x1, edge.x2))
@@ -172,7 +177,7 @@ def edge_intersects_rect_interior(edge: Edge, xmin: int, xmax: int, ymin: int, y
                 return True
         return False
 
-    # Ska egentligen aldrig hända i ditt problem
+    # We should never end up here...
     return False
 
 def rectangle_inside_polygon(c1: Coordinate, c2: Coordinate, edges: list[Edge]) -> bool:
