@@ -40,7 +40,7 @@ class ServerRack:
                 self.cable_matrix[vertice_index][adj_index]=1
     
     
-    def neighbors(self, node: str) -> list[str]:
+    def get_adjacent(self, node: str) -> list[str]:
         idx = self.servers.index(node)
         result = []
         row = self.cable_matrix[idx]
@@ -60,7 +60,7 @@ class ServerRack:
             return 1 if (seen_dac and seen_fft) else 0
 
         total = 0
-        for nxt in self.neighbors(node):
+        for nxt in self.get_adjacent(node):
             total += self.dfs_part2(nxt, seen_dac, seen_fft, end_node)
         return total
 
@@ -77,7 +77,7 @@ class ServerRack:
             if current_node == end_node:     
                 paths_to_end_node_counter += 1
 
-            for adj_node in self.neighbors(current_node):
+            for adj_node in self.get_adjacent(current_node):
                 work.append(adj_node) # add the adjacent node/server to the work stack
 
         return paths_to_end_node_counter
