@@ -65,7 +65,7 @@ dvszwmarrgswjxmb is naughty because it contains only one vowel.
                 return True
             index += 1
 
-            print("".join([letter_1, letter_2, letter_3]))
+            #print("".join([letter_1, letter_2, letter_3]))
         return False
     
     def is_nice(self, part2:bool=False) -> bool:
@@ -93,9 +93,9 @@ def setup(path="input_day05.dat"):
 
 if __name__ == "__main__":
     data = setup()
-    #p1 = sum(1 for ns in data if ns.is_nice())
+    p1 = sum(1 for ns in data if ns.is_nice())
     p2 = sum(1 for ns in data if ns.is_nice(part2=True))
-    #print("Part 1:", p1)
+    print("Part 1:", p1)
     print("Part 2:", p2)
 
     
