@@ -1,8 +1,9 @@
 """
     Day 5: Doesn't He Have Intern-Elves For This?
 """
+from operator import truediv
 import string
-
+import re
 
 class NiceString:
     """
@@ -47,27 +48,20 @@ dvszwmarrgswjxmb is naughty because it contains only one vowel.
         return False
     
     def has_double_pair_not_overlapping(self) -> bool:
-        # slow version - scan string 2 chars at a time.
-        #check if .find starting from a good index finds this muthafuckah
-        for i in range(1,len(self.text)-1,2):
-            chunk = self.text[i-1:i+1]
-            if self.text.find(chunk,i+1) > -1:
-                return True
+        # changed to regex
+        match = re.search(r"([a-z][a-z])[a-z]*\1", self.text)
+        if match is not None:
+            return True
+        
         return False
     
     def has_letter_repeating_with_other_letter_inbetween(self) -> bool:
-        index = 0
-        for i in range(len(self.text)-2):
-            letter_1 = self.text[index]
-            letter_2 = self.text[index+1]
-            letter_3 = self.text[index+2]
-            if letter_1 == letter_3 and letter_1 != letter_2:
-                return True
-            index += 1
-
-            #print("".join([letter_1, letter_2, letter_3]))
+        match = re.search(r"([a-z])[a-z]\1", self.text)
+        if match is not None:
+            return True
+        
         return False
-    
+        
     def is_nice(self, part2:bool=False) -> bool:
         if not part2:
             if self.contains_forbidden_strings():
