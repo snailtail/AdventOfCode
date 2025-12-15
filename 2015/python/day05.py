@@ -1,7 +1,6 @@
 """
     Day 5: Doesn't He Have Intern-Elves For This?
 """
-from operator import truediv
 import string
 import re
 
