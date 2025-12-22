@@ -10,4 +10,6 @@ When I do actually do it, I usually fix a badge for the workflows - if so they'r
 
 [![2024 .NET 10 Xunit Tests](https://github.com/snailtail/AdventOfCode/actions/workflows/2024-tests.yml/badge.svg)](https://github.com/snailtail/AdventOfCode/actions/workflows/2024-tests.yml)  
 
+[![2023 .NET 9 Xunit Tests](https://github.com/snailtail/AdventOfCode/actions/workflows/2023-tests.yml/badge.svg)](https://github.com/snailtail/AdventOfCode/actions/workflows/2023-tests.yml)  
+
 [![2015 Python Tests](https://github.com/snailtail/AdventOfCode/actions/workflows/2015-python.yml/badge.svg)](https://github.com/snailtail/AdventOfCode/actions/workflows/2015-python.yml)  
