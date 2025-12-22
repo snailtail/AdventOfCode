@@ -2,7 +2,7 @@
 
 This is my attempt at solving the puzzles from [Advent of Code 2024](https://adventofcode.com/2024)  
 
-Status for the Unit tests: [![Advent Of Tests 2024](https://github.com/snailtail/AoC2024/actions/workflows/main.yml/badge.svg)](https://github.com/snailtail/AoC2024/actions/workflows/main.yml)  
+Status for the Unit tests: [![Advent Of Tests 2024](https://github.com/snailtail/AdventOfCode/actions/workflows/2024-tests.yml/badge.svg)](https://github.com/snailtail/AdventOfCode/actions/workflows/2024-tests.yml)  
 
 ## --- Day 1: Historian Hysteria ---  
 Starting off easy with some comparisons of arrays  
