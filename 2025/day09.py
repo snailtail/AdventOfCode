@@ -15,7 +15,7 @@ class Coordinate:
     def distance_to(self, other):
         return abs(self.x - other.x) + abs(self.y - other.y)
 
-    def __repr__(self):
+    def __str__(self):
         return f"Coordinate({self.x}, {self.y})"
 
 
@@ -26,7 +26,7 @@ class Edge:
         self.x2 = x2
         self.y2 = y2
 
-    def __repr__(self):
+    def __str__(self):
         return f"Edge({self.x1},{self.y1}, {self.x2},{self.y2})"
 
 

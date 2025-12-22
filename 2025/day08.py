@@ -46,7 +46,7 @@ class Coordinate:
             (self.x - other.x) ** 2 + (self.y - other.y) ** 2 + (self.z - other.z) ** 2
         )
 
-    def __repr__(self):
+    def __str__(self):
         return f"Coordinate({self.x}, {self.y}, {self.z})"
 
 

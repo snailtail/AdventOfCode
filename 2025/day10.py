@@ -185,7 +185,7 @@ class Machine:
         print("States explored for this machine:", states_explored)
         return None
 
-    def __repr__(self):
+    def __str__(self):
         return (
             f"Machine(pattern='{self.pattern_str}', "
             f"target_mask={bin(self.target_mask)}, "
