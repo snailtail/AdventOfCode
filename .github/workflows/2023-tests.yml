@@ -1,11 +1,14 @@
-name: Advent Of Tests
+name: 2023 .NET 9 Xunit Tests
 
 on:
   push:
-    branches: [main]
+    paths:
+      - "2023/**"
+      - ".github/workflows/2023-tests.yml"  
   pull_request:
-    branches: [main]
-
+    paths:
+      - "2023/**"
+      - ".github/workflows/2023-tests.yml"  
 permissions:
   id-token: write
   contents: read
@@ -14,6 +17,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 2024
 
     steps:
       - uses: actions/checkout@v4
@@ -32,5 +38,5 @@ jobs:
         if: success() || failure() # run this step even if previous step failed
         with:
           name: XUNIT Tests # Name of the check run which will be created
-          path: tests/**/*.trx # Path to test results
+          path: 2023/tests/**/*.trx # Path to test results
           reporter: dotnet-trx # Format of test results
