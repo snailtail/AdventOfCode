@@ -12,4 +12,4 @@ Or if I come up with some fantastic tool myself, for parsing or reinventing some
 
 _\* .NET 7 was used during the event in 2023. Later upgraded to .NET 9 in 2024_
 
-[![Advent Of Tests](https://github.com/snailtail/Advent-Of-Code-2023/actions/workflows/main.yml/badge.svg)](https://github.com/snailtail/Advent-Of-Code-2023/actions/workflows/main.yml)
+[![2023 .NET 9 Xunit Tests](https://github.com/snailtail/AdventOfCode/actions/workflows/2023-tests.yml/badge.svg)](https://github.com/snailtail/AdventOfCode/actions/workflows/2023-tests.yml)  
