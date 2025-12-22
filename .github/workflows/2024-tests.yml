@@ -1,4 +1,4 @@
-name: Advent Of Tests 2024
+name: 2024 .NET 10 Xunit Tests
 
 on:
   push:
