@@ -4,7 +4,7 @@ Trying to solve some of the challenges from adventofcode.com
 
 Sometimes I use .NET, sometimes I use Python. Sometimes I do a bit of both.  
 
-I usually use VSCode with some relevant plugins.  
+I usually use VSCode with some relevant plugins. Occasionally I use Visual Studio, or JetBrains Rider.  
 
 I do my work mostly on MacOS, but sometimes on Windows, sometimes using WSL, and sometimes I work from my Ubuntu desktop at home.  
 
